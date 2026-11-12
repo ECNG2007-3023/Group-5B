@@ -1,0 +1,7 @@
+{
+  "fixture": "fxc1_completion.vhd",
+  "kind": "completion",
+  "position": {"line": 14, "character": 11},
+  "must_include": ["sig_clock", "sig_reset"],
+  "note": "Completion straight after the typed prefix sig_ (line 15, column 12 of the file; 14 and 11 counting from 0)."
+}

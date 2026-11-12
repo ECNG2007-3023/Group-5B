@@ -1,0 +1,57 @@
+# Runs on every push and pull request: installs the real VHDL-LS, runs all
+# pytest tests, then starts the Gateway and runs the live WebSocket check.
+# If the P5A repository can be checked out, the combined P5A + P5B tests run
+# too, with real GHDL in Docker; otherwise they are skipped. P5A is taken from
+# <owner of this repo>/Group-5A, or from the repository variable P5A_REPOSITORY
+# (Settings > Secrets and variables > Actions > Variables) if that is set.
+name: tests
+
+on:
+  push:
+  pull_request:
+
+env:
+  VHDL_LS_VERSION: v0.88.0
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Install VHDL-LS
+        run: |
+          curl -sSL -o vhdl_ls.zip "https://github.com/VHDL-LS/rust_hdl/releases/download/${VHDL_LS_VERSION}/vhdl_ls-x86_64-unknown-linux-gnu.zip"
+          unzip -q vhdl_ls.zip -d "$HOME"
+          echo "$HOME/vhdl_ls-x86_64-unknown-linux-gnu/bin" >> "$GITHUB_PATH"
+
+      - name: Check out P5A (for the combined backend tests)
+        id: p5a
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.P5A_REPOSITORY || format('{0}/Group-5A', github.repository_owner) }}
+          path: p5a
+
+      - name: Build P5A's GHDL image
+        if: steps.p5a.outcome == 'success'
+        run: docker build -t p5a-ghdl p5a/docker
+
+      - name: Unit, VHDL-LS and combined tests
+        env:
+          P5A_DIR: ${{ github.workspace }}/p5a
+        run: python -m pytest tests -v -rs
+
+      - name: Live Gateway check
+        run: |
+          uvicorn gateway.main:app --port 8000 &
+          for i in $(seq 30); do curl -sf http://127.0.0.1:8000/language-service/health && break; sleep 1; done
+          python tools/check_gateway.py ws://127.0.0.1:8000/ws/language-service

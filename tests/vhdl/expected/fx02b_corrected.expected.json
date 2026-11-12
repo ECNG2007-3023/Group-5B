@@ -1,0 +1,6 @@
+{
+  "fixture": "fx02b_corrected.vhd",
+  "kind": "diagnostics",
+  "expect": "none",
+  "note": "fx02 with the semicolon put back, sent as a change to the same open file: the error is cleared."
+}

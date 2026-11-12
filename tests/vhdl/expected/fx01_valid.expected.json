@@ -1,0 +1,6 @@
+{
+  "fixture": "fx01_valid.vhd",
+  "kind": "diagnostics",
+  "expect": "none",
+  "note": "Valid design: the diagnostics list is empty and the summary is \"No errors present.\""
+}
