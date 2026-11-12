@@ -17,9 +17,9 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -36,7 +36,7 @@ jobs:
       - name: Check out P5A (for the combined backend tests)
         id: p5a
         continue-on-error: true
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ${{ vars.P5A_REPOSITORY || format('{0}/Group-5A', github.repository_owner) }}
           path: p5a
