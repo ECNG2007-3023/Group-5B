@@ -8,6 +8,8 @@ import time
 from gateway.jsonrpc import (INTERNAL_ERROR, INVALID_REQUEST, METHOD_NOT_FOUND, NOT_INITIALIZED,
                              GatewayError, error_from, error_response, parse_message,
                              result_response)
+from gateway.invariants import (InvariantError, check_connection, check_outgoing,
+                                check_transition)
 from gateway.mappers import safe_text
 from gateway.methods import ALLOWED
 from gateway.vhdl_ls_bridge import LanguageServerDied, LanguageServerError, LanguageServerTimeout
@@ -32,6 +34,17 @@ class Connection:
         self._watchdog = None
 
     async def send(self, obj):
+        try:
+            check_outgoing(obj)
+        except InvariantError as exc:
+            # A bug in the Gateway: never send a malformed message. The client
+            # gets a plain "Internal error" instead, the details go to the log.
+            log.error("invariant broken, message not sent: %s", exc)
+            reply_id = obj.get("id") if isinstance(obj, dict) else None
+            if not isinstance(reply_id, (str, int)) or isinstance(reply_id, bool):
+                reply_id = None
+            obj = error_response(reply_id, INTERNAL_ERROR, "Internal error",
+                                 "internal_error", "The gateway hit an unexpected error.")
         async with self._send_lock:
             try:
                 await self._send_json(obj)
@@ -39,6 +52,13 @@ class Connection:
                 log.debug("could not send, the client has probably gone")
 
     # ------------------------------------------------------------ state checks
+
+    def _set_state(self, new):
+        """Every change of state goes through here, so the state machine's
+        rules (invariants.TRANSITIONS) are checked on each one."""
+        check_transition(self.state, new)
+        self.state = new
+        check_connection(self)
 
     def reject_if_shutdown(self):
         if self.state == "shutdown":
@@ -59,7 +79,7 @@ class Connection:
 
     async def open_session(self):
         self.session = await self.manager.open()
-        self.state = "ready"
+        self._set_state("ready")
         self._stop_watchdog()
         self._watchdog = asyncio.create_task(self._watch())
         return self.session
@@ -72,7 +92,7 @@ class Connection:
         if session is not None:
             await self.manager.close(session.id)
         if self.state in ("ready", "failed"):
-            self.state = "shutdown"
+            self._set_state("shutdown")
 
     async def fail(self, message, notify=False):
         """vhdl_ls died or hung: release the session and optionally tell the client."""
@@ -80,7 +100,7 @@ class Connection:
         if session is None:
             return
         self.session = None
-        self.state = "failed"
+        self._set_state("failed")
         self._stop_watchdog()
         await self.manager.close(session.id)
         if notify:

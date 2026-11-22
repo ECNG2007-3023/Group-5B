@@ -18,6 +18,7 @@ GHDL is run with VHDL-2008 (P5A's P5A_GHDL_STD setting), because that is what
 VHDL-LS checks against. Set P5A_GHDL_STD yourself before starting to use
 another standard.
 """
+import json
 import logging
 import os
 import sys
@@ -55,6 +56,7 @@ if str(P5A_DIR) not in sys.path:
 from app import docker_runner                                         # noqa: E402  (P5A)
 from app import main as p5a_main                                      # noqa: E402  (P5A)
 from app.models import SimulationRequest                              # noqa: E402  (P5A)
+from gateway.invariants import InvariantError, check_combined_result  # noqa: E402
 from gateway.jsonrpc import GatewayError                              # noqa: E402
 from gateway.router import router as p5b_router                       # noqa: E402
 from gateway.router import shutdown as p5b_shutdown                   # noqa: E402
@@ -90,6 +92,22 @@ def _failure(status_code, error, message, diagnostics=None):
 
 @app.post("/check-and-simulate", tags=["P5A + P5B"])
 async def check_and_simulate(request: SimulationRequest):
+    reply = await _check_and_simulate(request)
+    content = reply
+    if isinstance(reply, JSONResponse):
+        content = json.loads(reply.body)
+    # Every reply that carries VHDL-LS results is checked (not P5A's own
+    # validation or Docker-down replies, which never got as far as VHDL-LS).
+    if isinstance(content, dict) and content.get("diagnostics"):
+        try:
+            check_combined_result(content, len(request.files))
+        except InvariantError as exc:
+            log.error("invariant broken in /check-and-simulate: %s", exc)
+            return _failure(500, "internal_error", "Internal error in the combined backend.")
+    return reply
+
+
+async def _check_and_simulate(request):
     """Check the files with VHDL-LS (P5B) first. If it finds an error, no GHDL
     job is created and the diagnostics are returned. Otherwise the request goes
     to P5A's /simulate and its result comes back with an empty diagnostics list

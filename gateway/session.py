@@ -9,10 +9,10 @@ import asyncio
 import logging
 import time
 
-from gateway import mappers
+from gateway import invariants, mappers
 from gateway.config import Config
 from gateway.jsonrpc import INTERNAL_ERROR, INVALID_PARAMS, GatewayError
-from gateway.session_store import SessionStore, UnknownSession
+from gateway.session_store import SessionStore, UnknownSession, is_allowed_filename
 from gateway.vhdl_ls_bridge import start_bridge
 
 log = logging.getLogger("p5b.session")
@@ -30,10 +30,17 @@ class Session:
         self.scrub = mappers.make_scrubber(str(self.dir.resolve()))
         self.last_activity = time.monotonic()
 
+    def check_invariant(self, max_files):
+        """Class invariant (see invariants.check_session). Called after the
+        session is created and after every operation that changes it."""
+        invariants.check_session(self, max_files)
+
     def touch(self):
         self.last_activity = time.monotonic()
 
     def path_for(self, name):
+        # Programmer assumption: only names that passed resolve_uri() get here.
+        assert is_allowed_filename(name), name
         return self.store.file_path(self.id, name)
 
     def resolve_uri(self, uri):
@@ -118,8 +125,11 @@ class SessionManager:
                 raise GatewayError(INTERNAL_ERROR, "VHDL-LS process could not be started",
                                    "language_server_failure",
                                    "Check that vhdl_ls is installed (P5B_VHDL_LS_PATH or PATH).")
+            assert session_id not in self._sessions      # ids are random and unique
             session = Session(session_id, self.store, bridge)
+            session.check_invariant(self.cfg.max_files)          # establishment
             self._sessions[session_id] = session
+            invariants.check_manager(self)
             return session
         finally:
             self._starting -= 1
@@ -138,6 +148,7 @@ class SessionManager:
         if the caller is cancelled (client gone, server stopping).
         """
         session = self._sessions.pop(session_id, None)
+        invariants.check_manager(self)
         if session is None:
             return
         task = asyncio.ensure_future(self._teardown(session))
@@ -181,8 +192,9 @@ class SessionManager:
                 if mappers.uri_to_name(f["name"]) != f["name"]:
                     raise GatewayError(INVALID_PARAMS, "File not in the prescribed file set",
                                        "invalid_params", f"Bad file name: {mappers.safe_text(f['name'])}")
-                await self.write_file(session, f["name"], f["content"])
-                await session.bridge.open_file(session.path_for(f["name"]), f["content"])
+                content = mappers.without_bom(f["content"])
+                await self.write_file(session, f["name"], content)
+                await session.bridge.open_file(session.path_for(f["name"]), content)
             results = []
             for f in files:
                 raw = await session.bridge.get_diagnostics(session.path_for(f["name"]),

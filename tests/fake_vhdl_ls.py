@@ -8,6 +8,12 @@ Environment variables used by the tests:
     FAKE_LS_MODE=hang          never answer completion requests
     FAKE_LS_MODE=die           exit as soon as a completion request arrives
     FAKE_LS_MODE=error         answer completion requests with an error
+    FAKE_LS_MODE=garbage       answer completion with broken LSP framing
+    FAKE_LS_MODE=no_length     answer completion with a header but no Content-Length
+    FAKE_LS_MODE=truncate      start a completion answer, then exit half-way through
+    FAKE_LS_MODE=ignore_exit   answer shutdown but never exit (must be killed)
+    FAKE_LS_MODE=asks_client   send the client a request of its own on didOpen,
+                               and report on stderr when the answer comes back
     FAKE_LS_URI_STYLE=encoded  send diagnostics under a differently spelled URI
                                (first letter of the file name percent-encoded)
 """
@@ -82,11 +88,20 @@ while True:
     if msg is None:
         break
     method, rid, params = msg.get("method"), msg.get("id"), msg.get("params") or {}
+    if method is None:                                   # an answer to our own request
+        sys.stderr.write(f"client answered request {rid}\n")
+        sys.stderr.flush()
+        continue
     if method == "initialize":
         send({"jsonrpc": "2.0", "id": rid, "result": {"capabilities": {}}})
     elif method == "textDocument/didOpen":
         d = params["textDocument"]
         texts[d["uri"]] = d["text"]
+        if MODE == "asks_client":
+            send({"jsonrpc": "2.0", "id": 99, "method": "client/registerCapability",
+                  "params": {"registrations": []}})
+            send({"jsonrpc": "2.0", "method": "window/logMessage",
+                  "params": {"type": 3, "message": "ignored"}})
         push(d["uri"])
     elif method == "textDocument/didChange":
         uri = params["textDocument"]["uri"]
@@ -102,6 +117,18 @@ while True:
         if MODE == "error":
             send({"jsonrpc": "2.0", "id": rid, "error": {"code": -32603, "message": "fake failure"}})
             continue
+        if MODE == "garbage":
+            stdout.write(b"Content-Length: not-a-number\r\n\r\n{}")
+            stdout.flush()
+            continue
+        if MODE == "no_length":
+            stdout.write(b"Content-Type: x\r\n\r\n")
+            stdout.flush()
+            continue
+        if MODE == "truncate":
+            stdout.write(b"Content-Length: 500\r\n\r\n{\"jsonrpc\": ")
+            stdout.flush()
+            os._exit(0)
         text = texts.get(params["textDocument"]["uri"], "")
         names = sorted(set(re.findall(r"signal\s+(\w+)", text)))
         send({"jsonrpc": "2.0", "id": rid,
@@ -109,4 +136,6 @@ while True:
     elif method == "shutdown":
         send({"jsonrpc": "2.0", "id": rid, "result": None})
     elif method == "exit":
+        if MODE == "ignore_exit":
+            continue
         break

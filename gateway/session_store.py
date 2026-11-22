@@ -15,6 +15,8 @@ import shutil
 import uuid
 from pathlib import Path
 
+from gateway.invariants import check_inside
+
 # P5A's file name rule (FILE_NAME_RE in P5A's app/docker_runner.py): letters,
 # digits, "_", "." and "-", not starting with "." or "-", at most 100
 # characters, ending in .vhd or .vhdl in any letter case. fullmatch is used,
@@ -60,7 +62,9 @@ class SessionStore:
         return session_id
 
     def delete_session(self, session_id):
-        shutil.rmtree(self.session_dir(session_id))
+        folder = self.session_dir(session_id)
+        check_inside(folder, self.root)      # never delete anything else
+        shutil.rmtree(folder)
 
     def session_dir(self, session_id):
         if not isinstance(session_id, str) or SESSION_ID_RE.fullmatch(session_id) is None:

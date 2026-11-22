@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, Validat
 
 from gateway import mappers
 from gateway.jsonrpc import INVALID_PARAMS, INVALID_REQUEST, GatewayError, notification
+from gateway.session_store import is_allowed_filename
 
 
 class _Params(BaseModel):
@@ -92,12 +93,16 @@ async def _publish(conn, session, name, raw):
 async def _update_file(conn, session, name, text, version):
     """Save the file, give it to vhdl_ls and send its diagnostics back."""
     cfg = conn.cfg
+    text = mappers.without_bom(text)
     if len(text.encode("utf-8")) > cfg.max_file_bytes:
         raise GatewayError(INVALID_PARAMS, "File too large", "invalid_params",
                            f"A file may be at most {cfg.max_file_bytes} bytes.")
     if name not in session.versions and len(session.versions) >= cfg.max_files:
         raise GatewayError(INVALID_PARAMS, "Too many files", "invalid_params",
                            f"A session may hold at most {cfg.max_files} files.")
+
+    # Programmer assumption: resolve_uri() has already checked the name.
+    assert is_allowed_filename(name), name
 
     # Disk first: vhdl_ls and P5A both read the files in src/.
     await conn.manager.write_file(session, name, text)
@@ -121,6 +126,7 @@ async def _update_file(conn, session, name, text, version):
         mapped = mappers.to_publish_diagnostics("", 0, latest, session.scrub)["diagnostics"]
         if mapped != session.published.get(other):
             await _publish(conn, session, other, latest)
+    session.check_invariant(cfg.max_files)                       # preservation
 
 
 async def did_open(conn, params):
@@ -147,6 +153,7 @@ async def did_close(conn, params):
     if name in session.opened:
         session.opened.discard(name)
         session.published.pop(name, None)
+        session.check_invariant(conn.cfg.max_files)              # preservation
         await conn.call_bridge(session.bridge.close_file(session.path_for(name)))
 
 

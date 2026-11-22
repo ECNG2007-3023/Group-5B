@@ -48,7 +48,10 @@ jobs:
       - name: Unit, VHDL-LS and combined tests
         env:
           P5A_DIR: ${{ github.workspace }}/p5a
-        run: python -m pytest tests -v -rs
+        run: python -m coverage run -m pytest tests -v -rs
+
+      - name: White-box coverage (statement + branch)
+        run: python -m coverage report
 
       - name: Live Gateway check
         run: |

@@ -56,12 +56,15 @@ Details: [docs/p5a-integration.md](docs/p5a-integration.md).
 | --- | --- |
 | `python -m pytest -v -rs` | All tests. Tests that need the real `vhdl_ls`, P5A, or Docker are skipped (not failed) when those are missing; `-rs` shows why |
 | `python -m pytest tests/test_real_vhdl_ls.py -v` | The system-test cases with the real VHDL-LS |
+| `python -m pytest tests/test_invariants.py -v` | Invariants checked inside the Gateway, each broken on purpose |
+| `python -m pytest tests/test_blackbox.py -v` | Black box: equivalence partitions, boundary values, decision table, state transitions, error guessing |
+| `python -m coverage run -m pytest tests` then `python -m coverage report` | White box: statement + branch coverage (96%) |
 | `python -m pytest tests/test_combined.py -v` | P5A + P5B in one backend, including FR-P5-01 and FR-P5-02 |
 | `python tools/check_gateway.py` | With the Gateway running: runs every system-test case twice over a real WebSocket, prints PASS/FAIL, and checks both runs gave identical replies |
 
 GitHub runs the tests on every push and pull request
 (`.github/workflows/tests.yml`), with the real VHDL-LS.
-What each test proves: [docs/test-plan.md](docs/test-plan.md).
+What each test proves: [docs/test-plan.md](docs/test-plan.md). How the lecture techniques are applied: [docs/testing-techniques.md](docs/testing-techniques.md).
 
 ## Use it from another project (P6A, scripts)
 
@@ -91,6 +94,7 @@ directly, since the messages are LSP messages.
 | `gateway/vhdl_ls_bridge.py` | Runs `vhdl_ls` and speaks LSP to it over stdin/stdout |
 | `gateway/mappers.py` | VHDL-LS replies to the contract format; removes real paths |
 | `gateway/jsonrpc.py` | JSON-RPC parsing, replies and error codes |
+| `gateway/invariants.py` | Rules every reply and session must obey, checked while the Gateway runs |
 | `gateway/fake_bridge.py` | Stand-in for VHDL-LS used by the tests |
 | `gateway/config.py` | Limits (8 sessions, 20 files, 200,000 bytes per file...); all overridable by environment variable |
 | `parent_main.py` | One backend: P5A's app with P5B added |

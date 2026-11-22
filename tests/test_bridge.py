@@ -195,3 +195,72 @@ def test_uri_key_linux_paths_stay_case_sensitive():
     assert uri_key("file:///tmp/A.vhd") != uri_key("file:///tmp/a.vhd")
     assert uri_key("file:///tmp/s1/src/a.vhd") != uri_key("file:///tmp/s1/src/b.vhd")
     assert uri_key(None) is None
+
+
+# ---- a misbehaving language-server process (added after the coverage review) ----
+
+@pytest.mark.parametrize("mode", ["garbage", "no_length", "truncate"])
+def test_broken_output_from_the_process_is_reported_as_died(session_dir, monkeypatch, mode):
+    """Bad framing, a missing Content-Length, or an answer cut off half-way:
+    the bridge must report the language server as dead, never hang or crash."""
+    monkeypatch.setenv("FAKE_LS_MODE", mode)
+    path = session_dir / "src" / "design.vhd"
+
+    async def go():
+        bridge = await started(session_dir)
+        try:
+            await bridge.open_file(path, SIGNALS)
+            with pytest.raises(LanguageServerDied):
+                await bridge.completion(path, 1, 10)
+            assert not bridge.is_alive
+        finally:
+            await bridge.close()
+    run(go())
+
+
+def test_process_that_ignores_exit_is_killed(session_dir, monkeypatch):
+    monkeypatch.setenv("FAKE_LS_MODE", "ignore_exit")
+
+    async def go():
+        bridge = await started(session_dir)
+        await bridge.close()                      # polite shutdown, then kill
+        assert not bridge.is_alive
+        await bridge.close()                      # safe to call twice
+    run(go())
+
+
+def test_requests_from_the_language_server_are_answered(session_dir, monkeypatch):
+    """VHDL-LS may ask the client things (client/registerCapability). The
+    bridge answers, ignores log messages, and diagnostics still arrive."""
+    monkeypatch.setenv("FAKE_LS_MODE", "asks_client")
+    path = session_dir / "src" / "design.vhd"
+
+    async def go():
+        bridge = await started(session_dir)
+        try:
+            await bridge.open_file(path, BROKEN)
+            diags = await bridge.get_diagnostics(path, 2.0)
+            assert diags and diags[0]["severity"] == 1
+            for _ in range(50):                   # the answer reaches the process
+                if any("answered request 99" in line for line in bridge._process._stderr_tail):
+                    break
+                await asyncio.sleep(0.02)
+            assert any("answered request 99" in line for line in bridge._process._stderr_tail)
+        finally:
+            await bridge.close()
+    run(go())
+
+
+def test_closing_a_file(session_dir):
+    path = session_dir / "src" / "design.vhd"
+
+    async def go():
+        bridge = await started(session_dir)
+        try:
+            await bridge.open_file(path, BROKEN)
+            await bridge.get_diagnostics(path, 2.0)
+            await bridge.close_file(path)
+            assert bridge.latest_diagnostics(path) is None
+        finally:
+            await bridge.close()
+    run(go())
