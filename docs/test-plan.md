@@ -5,25 +5,83 @@ What each automated test proves. Run everything with `python -m pytest -v -rs`
 Docker with the `p5a-ghdl` image). GitHub runs the tests on every push and
 pull request.
 
-**Latest full run: 173 passed, 0 failed, 0 skipped** (VHDL-LS 0.88.0, P5A with
-GHDL 4.1.0 in Docker, Python 3.12 and 3.13, Ubuntu 24.04, 11 Nov 2026).
-Live check `tools/check_gateway.py` against `parent_main:app`: 9/9 in both runs,
-identical replies. P5A's own `docker/m4_api_check.py` against the same
-combined backend: 13/13.
+**Latest full run: 273 passed, 0 failed, 0 skipped** (VHDL-LS 0.88.0, P5A with
+GHDL 4.1.0 in Docker, Python 3.13, Ubuntu 24.04, 19 Nov 2026). **Coverage: 96%**
+statement + branch (coverage.py).
+
+How each lecture technique (assertions, exceptions, invariants, white box,
+black box, test case write-ups) is applied, with the full EP/BVA tables,
+decision table, state transitions, loop-invariant proof and coverage figures:
+**[testing-techniques.md](testing-techniques.md)**.
 
 ## Test files
 
-| File | Tests | Needs | Level |
-| --- | --- | --- | --- |
-| `tests/test_messages.py` | 29 | nothing | Unit: JSON-RPC parsing, diagnostics/completion format, URIs, path removal |
-| `tests/test_session_store.py` | 40 | nothing | Unit: file name rule (checked against P5A's), session folders |
-| `tests/test_checks.py` | 8 | nothing | Unit: the test client's comparison helpers |
-| `tests/test_bridge.py` | 14 | nothing | LSP plumbing against a fake language server process |
-| `tests/test_gateway.py` | 51 | nothing | The Gateway over a WebSocket with the fake bridge |
-| `tests/test_real_vhdl_ls.py` | 14 | `vhdl_ls` | The system-test cases with the real VHDL-LS |
-| `tests/test_live_server.py` | 3 | nothing (uses `vhdl_ls` if installed) | Real uvicorn server, `tools/check_gateway.py` cases run twice |
-| `tests/test_combined.py` | 14 | P5A (some: Docker, `vhdl_ls`) | P5A + P5B in one backend |
-| `tools/check_gateway.py` | 9 cases × 2 runs | Gateway running | Live system check over a real WebSocket |
+| File | Tests | Needs | Level | Type |
+| --- | --- | --- | --- | --- |
+| `tests/test_messages.py` | 29 | nothing | Unit: JSON-RPC parsing, diagnostics/completion format, URIs, path removal | White box |
+| `tests/test_session_store.py` | 40 | nothing | Unit: file name rule (checked against P5A's), session folders | White box |
+| `tests/test_checks.py` | 8 | nothing | Unit: the test client's comparison helpers | White box |
+| `tests/test_invariants.py` | 31 | nothing (one test: P5A) | Unit: invariants (class, state machine, loop, replies), assertions, exceptions | White box |
+| `tests/test_blackbox.py` | 46 | nothing (5 tests: P5A; 3: `vhdl_ls`) | Equivalence partitions, boundary values, decision table, state transitions, error guessing | Black box |
+| `tests/test_failures.py` | 12 | nothing (5 tests: P5A) | Disk, VHDL-LS and combined-backend failures (added after the coverage review) | White box |
+| `tests/test_paths.py` | 5 | nothing | Statement/branch/path coverage of one function | White box |
+| `tests/test_bridge.py` | 20 | nothing | LSP plumbing against a fake language server process | White box |
+| `tests/test_gateway.py` | 51 | nothing | The Gateway over a WebSocket with the fake bridge | Grey box (WebSocket in/out, but VHDL-LS replaced and session folders inspected) |
+| `tests/test_real_vhdl_ls.py` | 14 | `vhdl_ls` | The system-test cases with the real VHDL-LS | Black box |
+| `tests/test_live_server.py` | 3 | nothing (uses `vhdl_ls` if installed) | Real uvicorn server, `tools/check_gateway.py` cases run twice | Black box |
+| `tests/test_combined.py` | 14 | P5A (some: Docker, `vhdl_ls`) | P5A + P5B in one backend | Black box (end to end), grey box (fake GHDL job) |
+| `tools/check_gateway.py` | 9 cases × 2 runs | Gateway running | Live system check over a real WebSocket | Black box |
+
+## Testing approach
+
+**White-box testing** is written from the code: it knows how each function
+works and tests its branches and error paths on their own. Examples:
+`test_messages.py` feeds `parse_message()` each kind of bad JSON-RPC message;
+`test_session_store.py` tries every edge of the file name rule;
+`test_bridge.py` drives the LSP plumbing against a fake language-server
+process; `test_invariants.py` breaks each invariant on purpose.
+
+**Black-box testing** is written from the requirements (SRS FR-P5B-xx and the
+contract) only. It sends messages in and checks the replies, without knowing
+how the Gateway works inside. Examples: `test_real_vhdl_ls.py` and
+`tools/check_gateway.py` run the system-test cases with the real VHDL-LS over
+a real WebSocket, exactly as P6A would; `test_combined.py` posts files to
+`/check-and-simulate` and checks FR-P5-01 and FR-P5-02 from the outside.
+
+**Grey box**: `test_gateway.py` talks to the Gateway over a real WebSocket like
+a client, but swaps VHDL-LS for the fake bridge and looks at the session
+folders and processes to prove clean-up.
+
+## Assertions, exceptions and invariants
+
+**Assertions** are checks that stop the program when something is not as
+expected. Every test is built from them, and some assert that an exception IS
+raised, e.g. `pytest.raises(InvalidFilename)` or `pytest.raises(InvariantError)`.
+
+**Exceptions** are how the Gateway reports a problem without crashing:
+
+| Exception | Raised when | What the client gets |
+| --- | --- | --- |
+| `GatewayError` | bad JSON, unknown method, bad params, not initialized, session limit | JSON-RPC error with the right code (-32700, -32600, -32601, -32602, -32002, -32603) and a category |
+| `InvalidFilename`, `UnknownSession` | the session store is given a bad name or a session that does not exist (second line of defence: names are already rejected earlier as -32602) | handled inside the Gateway; a deleted session is simply skipped |
+| `LanguageServerDied`, `LanguageServerTimeout`, `LanguageServerError` | VHDL-LS crashed, hung or answered with an error | -32603 `language_server_failure`; other sessions carry on |
+| `InvariantError` | an invariant is broken (a bug in the Gateway) | -32603 "Internal error" (HTTP 500 on `/check-and-simulate`), never a malformed reply |
+| any other `Exception` | anything unexpected | -32603 "Internal error"; the session carries on |
+
+**Invariants** are rules that must ALWAYS be true. They are checked inside the
+Gateway while it runs (`gateway/invariants.py`), not only in the tests. A
+broken rule raises `InvariantError`; a real exception is used instead of
+Python's `assert` because `assert` is switched off when Python runs with `-O`.
+
+| Invariant | Checked in | Tests |
+| --- | --- | --- |
+| Every message sent is valid JSON-RPC 2.0: a reply has exactly one of result/error; an error has an integer code and data with status `failed`, stage `language_service`, category and detail | `check_outgoing()`, every message in `Connection.send` | `test_bad_messages_are_caught` (10), `test_broken_reply_becomes_internal_error_and_session_carries_on` |
+| Diagnostics are for a file in the prescribed set, have severity 1-4 and non-negative positions, are sorted, and the summary matches ("No errors present" exactly when there is no error) | `check_publish_diagnostics()`, in the mapper and when sent | `test_bad_diagnostics_are_caught`, `test_broken_diagnostics_never_reach_the_client` |
+| Completion items have labels, are unique and sorted | `check_completion()`, in the mapper | `test_bad_completion_is_caught` |
+| Whatever VHDL-LS sends, the mapper's output obeys the rules above | mappers | `test_mapper_output_always_passes_for_any_input` (500 random replies) |
+| At most `max_sessions` sessions are active | `check_session_limit()`, when a session opens | `test_session_limit_rule` |
+| Only a folder directly inside the sessions folder is ever deleted | `check_inside()`, before every delete | `test_only_session_folders_may_be_deleted`, `test_delete_refuses_a_folder_outside_the_sessions_root` |
+| `/check-and-simulate`: one diagnostics entry per file, and no GHDL job if VHDL-LS found an error (FR-P5-01) | `check_combined_result()` | `test_combined_rule_no_job_after_vhdl_ls_errors`, `test_combined_backend_returns_500_when_its_rule_breaks` |
 
 ## Requirements, one by one
 

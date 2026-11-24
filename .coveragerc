@@ -1,0 +1,9 @@
+# White-box coverage (statement + branch) with coverage.py:
+#   python -m coverage run -m pytest
+#   python -m coverage report -m        (or: python -m coverage html)
+[run]
+branch = True
+source = gateway, clients, parent_main
+
+[report]
+show_missing = True

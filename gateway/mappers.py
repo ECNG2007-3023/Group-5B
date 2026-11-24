@@ -13,6 +13,7 @@ import re
 from collections import Counter
 from urllib.parse import quote, unquote
 
+from gateway import invariants
 from gateway.session_store import is_allowed_filename
 
 SEVERITY_BY_NAME = {"error": 1, "warning": 2, "information": 3, "info": 3, "hint": 4}
@@ -123,8 +124,17 @@ def _sort_key(d):
             r["end"]["character"], d["severity"], d["message"])
 
 
+def without_bom(text):
+    """Drop a UTF-8 "BOM" mark at the start of a file. Windows editors (e.g.
+    Notepad) add it; it is not VHDL, and VHDL-LS reports it as an error
+    ("Found invalid latin-1 character"). Found by error-guessing testing."""
+    return text[1:] if isinstance(text, str) and text.startswith("\ufeff") else text
+
+
 def summarize(diagnostics):
     """One sentence for the client, e.g. "No errors present." or "1 error found."."""
+    # Programmer assumption: the mapper only ever gives severities 1-4.
+    assert all(d["severity"] in SEVERITY_WORDS for d in diagnostics)
     if not diagnostics:
         return "No errors present."
     counts = Counter(d["severity"] for d in diagnostics)
@@ -142,9 +152,13 @@ def summarize(diagnostics):
 
 
 def to_publish_diagnostics(uri, version, raw, scrub=no_change):
+    # Programmer assumption: callers pass the document version as a whole number.
+    assert isinstance(version, int) and not isinstance(version, bool), version
     items = [_diagnostic(d, scrub) for d in (raw or []) if isinstance(d, dict)]
     items.sort(key=_sort_key)
-    return {"uri": uri, "version": version, "diagnostics": items, "summary": summarize(items)}
+    reply = {"uri": uri, "version": version, "diagnostics": items, "summary": summarize(items)}
+    invariants.check_publish_diagnostics(reply, check_uri=False)
+    return reply
 
 
 def to_completion(raw, scrub=no_change):
@@ -157,8 +171,11 @@ def to_completion(raw, scrub=no_change):
         items = raw.get("items") or []
         incomplete = bool(raw.get("isIncomplete", False))
 
+    # LOOP INVARIANT: `seen` holds exactly the keys of the items in `out`,
+    # so no item is kept twice.
     out = []
     seen = set()
+    invariants.check_dedupe_invariant(out, seen)                  # establishment
     for item in items:
         if not isinstance(item, dict) or not isinstance(item.get("label"), str):
             continue
@@ -173,5 +190,12 @@ def to_completion(raw, scrub=no_change):
             continue
         seen.add((label, kind, insert))
         out.append({"label": label, "kind": kind, "detail": detail, "insertText": insert})
+        invariants.require(len(out) == len(seen),                 # preservation
+                           "loop invariant: no completion item kept twice")
+    # EXIT: every item was looked at (a for loop over a finite list always
+    # ends), so by the invariant `out` holds each distinct item exactly once.
+    invariants.check_dedupe_invariant(out, seen)
     out.sort(key=lambda i: (i["label"], i["kind"] or 0, i["insertText"]))
-    return {"isIncomplete": incomplete, "items": out}
+    reply = {"isIncomplete": incomplete, "items": out}
+    invariants.check_completion(reply)
+    return reply

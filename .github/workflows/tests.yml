@@ -4,6 +4,10 @@
 # too, with real GHDL in Docker; otherwise they are skipped. P5A is taken from
 # <owner of this repo>/Group-5A, or from the repository variable P5A_REPOSITORY
 # (Settings > Secrets and variables > Actions > Variables) if that is set.
+# Group-5A is private, and GitHub's automatic token can only read THIS repo,
+# so to run the combined tests add a secret P5A_TOKEN (Settings > Secrets and
+# variables > Actions > New repository secret): a fine-grained personal access
+# token with read-only "Contents" access to Group-5A. Without it they are skipped.
 name: tests
 
 on:
@@ -39,6 +43,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: ${{ vars.P5A_REPOSITORY || format('{0}/Group-5A', github.repository_owner) }}
+          token: ${{ secrets.P5A_TOKEN || github.token }}
           path: p5a
 
       - name: Build P5A's GHDL image
@@ -48,7 +53,10 @@ jobs:
       - name: Unit, VHDL-LS and combined tests
         env:
           P5A_DIR: ${{ github.workspace }}/p5a
-        run: python -m pytest tests -v -rs
+        run: python -m coverage run -m pytest tests -v -rs
+
+      - name: White-box coverage (statement + branch)
+        run: python -m coverage report
 
       - name: Live Gateway check
         run: |

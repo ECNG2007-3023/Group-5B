@@ -32,6 +32,16 @@ needs_vhdl_ls = pytest.mark.skipif(
     VHDL_LS is None, reason="vhdl_ls not found (put it on PATH or set P5B_VHDL_LS_PATH)")
 
 
+def import_parent_main():
+    """parent_main (P5A + P5B in one backend), or skip the test when the
+    Group-5A repository is not found next to this one (or via P5A_DIR)."""
+    try:
+        import parent_main
+    except RuntimeError as exc:
+        pytest.skip(str(exc))
+    return parent_main
+
+
 def fx(name):
     return (FIXTURES / name).read_text(encoding="utf-8")
 
