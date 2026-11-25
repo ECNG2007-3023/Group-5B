@@ -144,10 +144,15 @@ def test_UT11_diagnostics_returned():
 
 @needs_vhdl_ls
 def test_UT11_diagnostics_real_vhdl_ls():
-    with Env(real=True) as e, e.ws() as ws:
-        initialize(ws)
-        bad = open_doc(ws, "fx02_missing_semicolon.vhd", FX02)["params"]["diagnostics"]
-        good = open_doc(ws, "fx01_valid.vhd", FX01)["params"]["diagnostics"]
+    # Each fixture in its own session: both declare entity and_gate, so opening
+    # them together would (correctly) give VHDL-LS "duplicate unit" errors.
+    with Env(real=True) as e:
+        with e.ws() as ws:
+            initialize(ws)
+            bad = open_doc(ws, DESIGN, FX02)["params"]["diagnostics"]
+        with e.ws() as ws:
+            initialize(ws)
+            good = open_doc(ws, DESIGN, FX01)["params"]["diagnostics"]
         problems = (checks.check_diagnostics(bad, expected("fx02_missing_semicolon.expected.json"))
                     + checks.check_diagnostics(good, expected("fx01_valid.expected.json")))
         save("UT-11_real_vhdl_ls", {"missing_semicolon": bad, "valid": good, "problems": problems})
