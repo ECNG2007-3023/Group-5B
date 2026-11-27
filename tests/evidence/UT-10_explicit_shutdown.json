@@ -1,0 +1,14 @@
+{
+  "test_id": "UT-10_explicit_shutdown",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "sessions_during": [
+      "cb1a05f29eae4b6d88d9a74489756aa4"
+    ],
+    "sessions_after": [],
+    "vhdl_ls_closed": [
+      true
+    ]
+  }
+}

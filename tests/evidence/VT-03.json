@@ -1,0 +1,57 @@
+{
+  "test_id": "VT-03",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:22",
+  "observed": {
+    "steps": [
+      [
+        "open session",
+        {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "capabilities": {
+              "textDocumentSync": 1,
+              "completionProvider": {
+                "resolveProvider": false
+              }
+            },
+            "serverInfo": {
+              "name": "p5b-gateway",
+              "version": "1"
+            },
+            "sessionId": "d15f59fb24db4acd884134a8d15c6b34"
+          }
+        }
+      ],
+      [
+        "open valid file",
+        "No errors present."
+      ],
+      [
+        "introduce error",
+        "1 error found."
+      ],
+      [
+        "fix error",
+        "No errors present."
+      ],
+      [
+        "completion after sig_",
+        [
+          "sig_clock",
+          "sig_reset"
+        ]
+      ],
+      [
+        "close",
+        {
+          "jsonrpc": "2.0",
+          "id": 8,
+          "result": null
+        }
+      ]
+    ],
+    "nothing_left_after_close": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "test_id": "IT-06_vhdl_ls_down",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:25",
+  "observed": {
+    "http": 503,
+    "result": {
+      "job_id": null,
+      "status": "failed",
+      "stage": "language_service",
+      "error": "internal_error",
+      "message": "Language service unavailable: VHDL-LS process could not be started",
+      "stages": [],
+      "vcd": null,
+      "diagnostics": []
+    },
+    "p5a_called": 0
+  }
+}

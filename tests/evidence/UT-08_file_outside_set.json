@@ -1,0 +1,24 @@
+{
+  "test_id": "UT-08_file_outside_set",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "sent": "../secret.txt",
+    "reply": {
+      "jsonrpc": "2.0",
+      "id": null,
+      "error": {
+        "code": -32602,
+        "message": "File not in the prescribed file set",
+        "data": {
+          "status": "failed",
+          "category": "invalid_params",
+          "stage": "language_service",
+          "detail": "Files must be flat names (letters, digits, _ . -) of at most 100 characters ending in .vhd or .vhdl, sent as file:///<name>."
+        }
+      }
+    },
+    "files_vhdl_ls_received": [],
+    "next_valid_message": "textDocument/publishDiagnostics"
+  }
+}

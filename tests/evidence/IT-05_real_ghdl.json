@@ -1,0 +1,23 @@
+{
+  "test_id": "IT-05_real_ghdl",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:25",
+  "observed": {
+    "status": "success",
+    "message": "Simulation finished.",
+    "stages": [
+      [
+        "analysis",
+        0
+      ],
+      [
+        "elaboration",
+        0
+      ],
+      [
+        "simulation",
+        0
+      ]
+    ]
+  }
+}

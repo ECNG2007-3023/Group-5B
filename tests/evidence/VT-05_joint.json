@@ -1,0 +1,9 @@
+{
+  "test_id": "VT-05_joint",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:29",
+  "observed": {
+    "replies_checked": 2,
+    "violations": []
+  }
+}

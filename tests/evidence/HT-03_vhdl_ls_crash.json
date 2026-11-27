@@ -1,0 +1,44 @@
+{
+  "test_id": "HT-03_vhdl_ls_crash",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:22",
+  "observed": {
+    "error_to_affected_client": {
+      "jsonrpc": "2.0",
+      "id": null,
+      "error": {
+        "code": -32603,
+        "message": "VHDL-LS process terminated unexpectedly",
+        "data": {
+          "status": "failed",
+          "category": "language_server_failure",
+          "stage": "language_service",
+          "detail": "Send initialize to start a new session."
+        }
+      }
+    },
+    "other_session": {
+      "uri": "file:///design.vhd",
+      "version": 1,
+      "diagnostics": [],
+      "summary": "No errors present."
+    },
+    "affected_client_restarts": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "capabilities": {
+          "textDocumentSync": 1,
+          "completionProvider": {
+            "resolveProvider": false
+          }
+        },
+        "serverInfo": {
+          "name": "p5b-gateway",
+          "version": "1"
+        },
+        "sessionId": "87f49b00bc3b445480d09f59cd94625e"
+      }
+    }
+  }
+}

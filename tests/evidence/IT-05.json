@@ -1,0 +1,23 @@
+{
+  "test_id": "IT-05",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:23",
+  "observed": {
+    "request_built_from_session": {
+      "files": [
+        "and_gate.vhd",
+        "and_gate_tb.vhd"
+      ],
+      "top": "and_gate_tb",
+      "stop_time": "100ns"
+    },
+    "p5a_http": 200,
+    "p5a_status": "success",
+    "files_identical_to_originals": true,
+    "p5a_health": 200,
+    "p5b_health": {
+      "status": "ok",
+      "sessions": 0
+    }
+  }
+}

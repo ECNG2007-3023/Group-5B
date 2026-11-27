@@ -1,0 +1,14 @@
+{
+  "test_id": "UT-10_client_disconnects",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "sessions_during": [
+      "ec7cdacd1262478dad15709fe558b9b4"
+    ],
+    "sessions_after": [],
+    "vhdl_ls_closed": [
+      true
+    ]
+  }
+}

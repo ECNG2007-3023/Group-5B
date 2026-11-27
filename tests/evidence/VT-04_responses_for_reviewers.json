@@ -1,0 +1,208 @@
+{
+  "test_id": "VT-04_responses_for_reviewers",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:29",
+  "observed": [
+    {
+      "n": 1,
+      "reply": {
+        "job_id": "abc123",
+        "status": "success",
+        "stage": "done",
+        "error": null,
+        "message": "Simulation finished.",
+        "stages": [],
+        "vcd": "$date today $end",
+        "diagnostics": [
+          {
+            "uri": "file:///and_gate.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          },
+          {
+            "uri": "file:///and_gate_tb.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          }
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "reply": {
+        "job_id": "abc123",
+        "status": "success",
+        "stage": "done",
+        "error": null,
+        "message": "Simulation finished.",
+        "stages": [],
+        "vcd": "$date today $end",
+        "diagnostics": [
+          {
+            "uri": "file:///and_gate.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          },
+          {
+            "uri": "file:///and_gate_tb.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          }
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "reply": {
+        "job_id": "abc123",
+        "status": "success",
+        "stage": "done",
+        "error": null,
+        "message": "Simulation finished.",
+        "stages": [],
+        "vcd": "$date today $end",
+        "diagnostics": [
+          {
+            "uri": "file:///and_gate.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          },
+          {
+            "uri": "file:///and_gate_tb.vhd",
+            "version": 1,
+            "diagnostics": [],
+            "summary": "No errors present."
+          }
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "reply": {
+        "job_id": "abc123",
+        "status": "success",
+        "stage": "done",
+        "error": null,
+        "message": "Simulation finished.",
+        "stages": [],
+        "vcd": "$date today $end"
+      }
+    },
+    {
+      "n": 5,
+      "reply": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "capabilities": {
+            "textDocumentSync": 1,
+            "completionProvider": {
+              "resolveProvider": false
+            }
+          },
+          "serverInfo": {
+            "name": "p5b-gateway",
+            "version": "1"
+          },
+          "sessionId": "826d8ab710814985925cff04c6eb44cd"
+        }
+      }
+    },
+    {
+      "n": 6,
+      "reply": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "error": {
+          "code": -32601,
+          "message": "Method not supported: textDocument/hover",
+          "data": {
+            "status": "failed",
+            "category": "unsupported_method",
+            "stage": "language_service",
+            "detail": "Only the approved diagnostics/completion subset is supported."
+          }
+        }
+      }
+    },
+    {
+      "n": 7,
+      "reply": {
+        "job_id": null,
+        "status": "failed",
+        "stage": "language_service",
+        "error": "analysis_error",
+        "message": "VHDL-LS found 1 error, so no GHDL job was started.",
+        "stages": [],
+        "vcd": null,
+        "diagnostics": [
+          {
+            "uri": "file:///and_gate.vhd",
+            "version": 1,
+            "diagnostics": [
+              {
+                "range": {
+                  "start": {
+                    "line": 14,
+                    "character": 16
+                  },
+                  "end": {
+                    "line": 14,
+                    "character": 17
+                  }
+                },
+                "severity": 1,
+                "code": "syntax",
+                "source": "vhdl_ls",
+                "message": "Expected ';' after assignment (in and_gate.vhd)"
+              }
+            ],
+            "summary": "1 error found."
+          }
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "reply": {
+        "job_id": null,
+        "status": "failed",
+        "stage": "validation",
+        "error": "validation_error",
+        "message": "Invalid request: files.0.content: String should have at least 1 character",
+        "stages": [],
+        "vcd": null
+      }
+    },
+    {
+      "n": 9,
+      "reply": {
+        "job_id": "j1",
+        "status": "failed",
+        "stage": "analysis",
+        "error": "internal_error",
+        "message": "Docker error: daemon not running",
+        "stages": [],
+        "vcd": null
+      }
+    },
+    {
+      "n": 10,
+      "reply": {
+        "job_id": null,
+        "status": "failed",
+        "stage": "language_service",
+        "error": "internal_error",
+        "message": "Language service unavailable: VHDL-LS process could not be started",
+        "stages": [],
+        "vcd": null,
+        "diagnostics": []
+      }
+    }
+  ]
+}

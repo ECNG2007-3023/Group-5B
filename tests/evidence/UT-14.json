@@ -1,0 +1,100 @@
+{
+  "test_id": "UT-14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:21",
+  "observed": {
+    "run_1": [
+      {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "capabilities": {
+            "textDocumentSync": 1,
+            "completionProvider": {
+              "resolveProvider": false
+            }
+          },
+          "serverInfo": {
+            "name": "p5b-gateway",
+            "version": "1"
+          },
+          "sessionId": "<id>"
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///design.vhd",
+          "version": 1,
+          "diagnostics": [
+            {
+              "range": {
+                "start": {
+                  "line": 12,
+                  "character": 14
+                },
+                "end": {
+                  "line": 12,
+                  "character": 15
+                }
+              },
+              "severity": 1,
+              "code": "syntax",
+              "source": "vhdl_ls",
+              "message": "Expected ';' after assignment (in design.vhd)"
+            }
+          ],
+          "summary": "1 error found."
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "method": "textDocument/publishDiagnostics",
+        "params": {
+          "uri": "file:///design.vhd",
+          "version": 2,
+          "diagnostics": [],
+          "summary": "No errors present."
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "isIncomplete": false,
+          "items": [
+            {
+              "label": "sig_clock",
+              "kind": 6,
+              "detail": "signal",
+              "insertText": "sig_clock"
+            },
+            {
+              "label": "sig_reset",
+              "kind": 6,
+              "detail": "signal",
+              "insertText": "sig_reset"
+            }
+          ]
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "error": {
+          "code": -32601,
+          "message": "Method not supported: textDocument/hover",
+          "data": {
+            "status": "failed",
+            "category": "unsupported_method",
+            "stage": "language_service",
+            "detail": "Only the approved diagnostics/completion subset is supported."
+          }
+        }
+      }
+    ],
+    "identical_on_run_2": true,
+    "p5a_imported": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "test_id": "UT-11",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "missing_semicolon": {
+      "uri": "file:///design.vhd",
+      "version": 1,
+      "diagnostics": [
+        {
+          "range": {
+            "start": {
+              "line": 12,
+              "character": 14
+            },
+            "end": {
+              "line": 12,
+              "character": 15
+            }
+          },
+          "severity": 1,
+          "code": "syntax",
+          "source": "vhdl_ls",
+          "message": "Expected ';' after assignment (in design.vhd)"
+        }
+      ],
+      "summary": "1 error found."
+    },
+    "valid": {
+      "uri": "file:///valid.vhd",
+      "version": 1,
+      "diagnostics": [],
+      "summary": "No errors present."
+    }
+  }
+}

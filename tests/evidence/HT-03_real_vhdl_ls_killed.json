@@ -1,0 +1,22 @@
+{
+  "test_id": "HT-03_real_vhdl_ls_killed",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:23",
+  "observed": {
+    "reply": {
+      "jsonrpc": "2.0",
+      "id": null,
+      "error": {
+        "code": -32603,
+        "message": "VHDL-LS process terminated unexpectedly",
+        "data": {
+          "status": "failed",
+          "category": "language_server_failure",
+          "stage": "language_service",
+          "detail": "Send initialize to start a new session."
+        }
+      }
+    },
+    "cleaned_up": true
+  }
+}
