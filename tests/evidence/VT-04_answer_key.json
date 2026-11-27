@@ -1,0 +1,47 @@
+{
+  "test_id": "VT-04_answer_key",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:29",
+  "observed": [
+    {
+      "n": 1,
+      "expected": "success"
+    },
+    {
+      "n": 2,
+      "expected": "success"
+    },
+    {
+      "n": 3,
+      "expected": "success"
+    },
+    {
+      "n": 4,
+      "expected": "success"
+    },
+    {
+      "n": 5,
+      "expected": "success"
+    },
+    {
+      "n": 6,
+      "expected": "failure"
+    },
+    {
+      "n": 7,
+      "expected": "failure"
+    },
+    {
+      "n": 8,
+      "expected": "failure"
+    },
+    {
+      "n": 9,
+      "expected": "failure"
+    },
+    {
+      "n": 10,
+      "expected": "failure"
+    }
+  ]
+}

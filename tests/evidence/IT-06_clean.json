@@ -1,0 +1,32 @@
+{
+  "test_id": "IT-06_clean",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:25",
+  "observed": {
+    "http": 200,
+    "result": {
+      "job_id": "abc123",
+      "status": "success",
+      "stage": "done",
+      "error": null,
+      "message": "Simulation finished.",
+      "stages": [],
+      "vcd": "$date today $end",
+      "diagnostics": [
+        {
+          "uri": "file:///and_gate.vhd",
+          "version": 1,
+          "diagnostics": [],
+          "summary": "No errors present."
+        },
+        {
+          "uri": "file:///and_gate_tb.vhd",
+          "version": 1,
+          "diagnostics": [],
+          "summary": "No errors present."
+        }
+      ]
+    },
+    "p5a_called": 1
+  }
+}

@@ -23,6 +23,7 @@ from clients import checks
 from conftest import (DESIGN, FIXTURES, Env, change_doc, completion, fx, initialize,
                       needs_vhdl_ls, notify, open_doc, request, uri)
 from gateway.invariants import check_completion, check_outgoing, check_publish_diagnostics
+from gateway.router import HEALTH_PATH
 
 EVIDENCE = Path(__file__).resolve().parent / "evidence"
 FX01 = fx("fx01_valid.vhd")
@@ -30,7 +31,7 @@ FX02 = fx("fx02_missing_semicolon.vhd")
 FX02B = fx("fx02b_corrected.vhd")
 FXC1 = fx("fxc1_completion.vhd")
 AFTER_SIG = (14, 11)       # just after "sig_" in fxc1_completion.vhd
-IN_ENTITY_NAME = (3, 2)    # inside the word "entity": no signal prefix typed
+IN_ENTITY_NAME = (3, 2)    # inside the word "entity": the typed prefix "en" matches no signal
 
 
 def expected(name):
@@ -216,6 +217,52 @@ def test_UT14_independent_and_deterministic():
     save("UT-14", {"run_1": first, "identical_on_run_2": first == second,
                    "p5a_imported": "app.docker_runner" in sys.modules})
     assert first == second
+
+
+# ================================================ 3.2.2 Integration tests
+
+@needs_vhdl_ls
+def test_IT03_websocket_session_reaches_vhdl_ls():
+    """FR-P5B-03, FR-P5B-07: a client session reaches a live, initialised VHDL-LS."""
+    with Env(real=True) as e, e.ws() as ws:
+        reply = initialize(ws)
+        open_doc(ws, DESIGN, FX01)                  # the prescribed file set
+        (sid,) = e.sessions()
+        folder = e.root / "sessions" / sid
+        alive = e.manager._sessions[sid].bridge.is_alive
+        health = e.client.get(HEALTH_PATH).json()
+        save("IT-03", {"reply": reply, "session_folder_contents":
+                       sorted(p.name for p in folder.iterdir()),
+                       "src_files": sorted(p.name for p in (folder / "src").iterdir()),
+                       "vhdl_ls_alive": alive, "health": health})
+        assert checks.is_success(reply) and reply["result"]["sessionId"] == sid
+        assert (folder / "src").is_dir() and (folder / "vhdl_ls.toml").is_file()
+        assert (folder / "src" / DESIGN).is_file()
+        assert alive and health == {"status": "ok", "sessions": 1}
+
+
+@needs_vhdl_ls
+def test_IT04_vhdl_ls_results_reach_client():
+    """FR-P5B-01, FR-P5B-02: diagnostics and completion come back in contract format."""
+    with Env(real=True) as e, e.ws() as ws:
+        initialize(ws)
+        diag_msg = open_doc(ws, DESIGN, FX02)
+        open_doc(ws, "fxc1_completion.vhd", FXC1)
+        hit = completion(ws, "fxc1_completion.vhd", *AFTER_SIG, id=5)
+        problems = (checks.check_diagnostics(diag_msg["params"]["diagnostics"],
+                                             expected("fx02_missing_semicolon.expected.json"))
+                    + checks.check_completion(hit["result"],
+                                              expected("fxc1_completion.expected.json")))
+        try:
+            check_outgoing(diag_msg)
+            check_publish_diagnostics(diag_msg["params"])
+            check_outgoing(hit)
+            check_completion(hit["result"])
+        except Exception as exc:          # noqa: BLE001 - recorded as evidence
+            problems.append(f"{type(exc).__name__}: {exc}")
+        save("IT-04", {"diagnostics_message": diag_msg, "completion_reply": hit,
+                       "problems": problems})
+        assert problems == []
 
 
 # ===================================================== 3.2.3 Validation tests

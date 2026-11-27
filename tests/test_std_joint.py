@@ -10,7 +10,7 @@ import re
 
 import pytest
 
-from conftest import initialize, needs_vhdl_ls, open_doc
+from conftest import DESIGN, initialize, needs_vhdl_ls, open_doc, request, uri
 from gateway.invariants import check_combined_result
 from test_std import save
 from test_combined import (DESIGN_FILES, RESULT_KEYS, TOP, client, fake_run_job,  # noqa: F401
@@ -142,10 +142,12 @@ def test_VT04_responses_for_reviewers(client, monkeypatch):
         replies.append(("success", client.post("/check-and-simulate",
                                                json={"files": ref_files(), "top": TOP}).json()))
     replies.append(("success", client.post("/simulate", json=session_request(client)).json()))
-    replies.append(("success", client.get("/language-service/health").json()))
+    with client.websocket_connect(WS_PATH) as ws:
+        replies.append(("success", initialize(ws)))
+        replies.append(("failure", request(ws, "textDocument/hover", {
+            "textDocument": {"uri": uri(DESIGN)}, "position": {"line": 0, "character": 0}}, id=2)))
     replies.append(("failure", client.post("/check-and-simulate",
                                            json={"files": BROKEN_AND_GATE, "top": "and_gate"}).json()))
-    replies.append(("failure", client.post("/simulate", json={"top": "x"}).json()))
     replies.append(("failure", client.post("/simulate", json={
         "files": [{"name": "empty.vhd", "content": ""}], "top": "x"}).json()))
     monkeypatch.setattr(docker_runner, "run_job", lambda files, top, stop_time=None: {
@@ -159,7 +161,11 @@ def test_VT04_responses_for_reviewers(client, monkeypatch):
                                            enumerate(replies)])
     save("VT-04_answer_key", [{"n": i + 1, "expected": k} for i, (k, _) in enumerate(replies)])
     for kind, r in replies:
-        if kind == "success":
+        if "jsonrpc" in r:                       # a P5B (JSON-RPC) reply
+            assert ("result" in r) == (kind == "success")
+            if kind == "failure":
+                assert r["error"]["data"]["status"] == "failed" and r["error"]["message"]
+        elif kind == "success":
             assert r.get("status") in ("success", "ok")
         else:
             assert r["status"] == "failed" and r["stage"] and r["error"] and r["message"]

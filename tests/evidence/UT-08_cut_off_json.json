@@ -1,0 +1,24 @@
+{
+  "test_id": "UT-08_cut_off_json",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "sent": "{\"jsonrpc\":\"2.0\",\"id\":3,\"method\":",
+    "reply": {
+      "jsonrpc": "2.0",
+      "id": null,
+      "error": {
+        "code": -32700,
+        "message": "Parse error: message is not valid JSON",
+        "data": {
+          "status": "failed",
+          "category": "invalid_request",
+          "stage": "language_service",
+          "detail": "Message is not valid JSON."
+        }
+      }
+    },
+    "files_vhdl_ls_received": [],
+    "next_valid_message": "textDocument/publishDiagnostics"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "test_id": "UT-12",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:20",
+  "observed": {
+    "before_fix": {
+      "uri": "file:///design.vhd",
+      "version": 1,
+      "diagnostics": [
+        {
+          "range": {
+            "start": {
+              "line": 12,
+              "character": 14
+            },
+            "end": {
+              "line": 12,
+              "character": 15
+            }
+          },
+          "severity": 1,
+          "code": "syntax",
+          "source": "vhdl_ls",
+          "message": "Expected ';' after assignment (in design.vhd)"
+        }
+      ],
+      "summary": "1 error found."
+    },
+    "after_fix": {
+      "uri": "file:///design.vhd",
+      "version": 2,
+      "diagnostics": [],
+      "summary": "No errors present."
+    }
+  }
+}

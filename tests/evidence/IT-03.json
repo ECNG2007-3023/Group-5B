@@ -1,0 +1,36 @@
+{
+  "test_id": "IT-03",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:21",
+  "observed": {
+    "reply": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "capabilities": {
+          "textDocumentSync": 1,
+          "completionProvider": {
+            "resolveProvider": false
+          }
+        },
+        "serverInfo": {
+          "name": "p5b-gateway",
+          "version": "1"
+        },
+        "sessionId": "ffd0aae177a44cffba50a83bf6a088a2"
+      }
+    },
+    "session_folder_contents": [
+      "src",
+      "vhdl_ls.toml"
+    ],
+    "src_files": [
+      "design.vhd"
+    ],
+    "vhdl_ls_alive": true,
+    "health": {
+      "status": "ok",
+      "sessions": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "test_id": "UT-08_missing_method",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:19",
+  "observed": {
+    "sent": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "params": {}
+    },
+    "reply": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "error": {
+        "code": -32600,
+        "message": "Invalid Request",
+        "data": {
+          "status": "failed",
+          "category": "invalid_request",
+          "stage": "language_service",
+          "detail": "'method' must be a non-empty string."
+        }
+      }
+    },
+    "files_vhdl_ls_received": [],
+    "next_valid_message": "textDocument/publishDiagnostics"
+  }
+}

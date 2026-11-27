@@ -1,0 +1,35 @@
+{
+  "test_id": "HT-02_limits",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:22",
+  "observed": {
+    "third_session_over_limit": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "error": {
+        "code": -32603,
+        "message": "Session limit reached",
+        "data": {
+          "status": "failed",
+          "category": "session_error",
+          "stage": "language_service",
+          "detail": "At most 2 sessions may be active."
+        }
+      }
+    },
+    "oversized_message": {
+      "jsonrpc": "2.0",
+      "id": null,
+      "error": {
+        "code": -32600,
+        "message": "Message too large",
+        "data": {
+          "status": "failed",
+          "category": "invalid_request",
+          "stage": "language_service",
+          "detail": "Messages must be at most 500 bytes."
+        }
+      }
+    }
+  }
+}

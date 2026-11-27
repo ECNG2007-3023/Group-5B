@@ -1,0 +1,2396 @@
+{
+  "test_id": "IT-04",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:22",
+  "observed": {
+    "diagnostics_message": {
+      "jsonrpc": "2.0",
+      "method": "textDocument/publishDiagnostics",
+      "params": {
+        "uri": "file:///design.vhd",
+        "version": 1,
+        "diagnostics": [
+          {
+            "range": {
+              "start": {
+                "line": 12,
+                "character": 14
+              },
+              "end": {
+                "line": 12,
+                "character": 14
+              }
+            },
+            "severity": 1,
+            "code": "syntax_error",
+            "source": "vhdl ls",
+            "message": "Expected ';' or 'when'"
+          }
+        ],
+        "summary": "1 error found."
+      }
+    },
+    "completion_reply": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "isIncomplete": false,
+        "items": [
+          {
+            "label": "\"&\"",
+            "kind": 24,
+            "detail": "+24 overloaded",
+            "insertText": "\"&\""
+          },
+          {
+            "label": "\"*\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"*\""
+          },
+          {
+            "label": "\"**\"",
+            "kind": 24,
+            "detail": "+4 overloaded",
+            "insertText": "\"**\""
+          },
+          {
+            "label": "\"+\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"+\""
+          },
+          {
+            "label": "\"-\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"-\""
+          },
+          {
+            "label": "\"/\"",
+            "kind": 24,
+            "detail": "+8 overloaded",
+            "insertText": "\"/\""
+          },
+          {
+            "label": "\"/=\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\"/=\""
+          },
+          {
+            "label": "\"<\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\"<\""
+          },
+          {
+            "label": "\"<=\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\"<=\""
+          },
+          {
+            "label": "\"=\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\"=\""
+          },
+          {
+            "label": "\">\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\">\""
+          },
+          {
+            "label": "\">=\"",
+            "kind": 24,
+            "detail": "+17 overloaded",
+            "insertText": "\">=\""
+          },
+          {
+            "label": "\"?/=\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?/=\""
+          },
+          {
+            "label": "\"?<\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?<\""
+          },
+          {
+            "label": "\"?<=\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?<=\""
+          },
+          {
+            "label": "\"?=\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?=\""
+          },
+          {
+            "label": "\"?>\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?>\""
+          },
+          {
+            "label": "\"?>=\"",
+            "kind": 24,
+            "detail": "+2 overloaded",
+            "insertText": "\"?>=\""
+          },
+          {
+            "label": "\"??\"",
+            "kind": 3,
+            "detail": "operator \"??\"[BIT return BOOLEAN]",
+            "insertText": "\"??\""
+          },
+          {
+            "label": "\"abs\"",
+            "kind": 24,
+            "detail": "+5 overloaded",
+            "insertText": "\"abs\""
+          },
+          {
+            "label": "\"and\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"and\""
+          },
+          {
+            "label": "\"mod\"",
+            "kind": 24,
+            "detail": "+3 overloaded",
+            "insertText": "\"mod\""
+          },
+          {
+            "label": "\"nand\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"nand\""
+          },
+          {
+            "label": "\"nor\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"nor\""
+          },
+          {
+            "label": "\"not\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"not\""
+          },
+          {
+            "label": "\"or\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"or\""
+          },
+          {
+            "label": "\"rem\"",
+            "kind": 24,
+            "detail": "+3 overloaded",
+            "insertText": "\"rem\""
+          },
+          {
+            "label": "\"rol\"",
+            "kind": 3,
+            "detail": "operator \"rol\"[STD_ULOGIC_VECTOR, INTEGER return STD_ULOGIC_VECTOR]",
+            "insertText": "\"rol\""
+          },
+          {
+            "label": "\"ror\"",
+            "kind": 3,
+            "detail": "operator \"ror\"[STD_ULOGIC_VECTOR, INTEGER return STD_ULOGIC_VECTOR]",
+            "insertText": "\"ror\""
+          },
+          {
+            "label": "\"sll\"",
+            "kind": 3,
+            "detail": "operator \"sll\"[STD_ULOGIC_VECTOR, INTEGER return STD_ULOGIC_VECTOR]",
+            "insertText": "\"sll\""
+          },
+          {
+            "label": "\"srl\"",
+            "kind": 3,
+            "detail": "operator \"srl\"[STD_ULOGIC_VECTOR, INTEGER return STD_ULOGIC_VECTOR]",
+            "insertText": "\"srl\""
+          },
+          {
+            "label": "\"xnor\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"xnor\""
+          },
+          {
+            "label": "\"xor\"",
+            "kind": 24,
+            "detail": "+10 overloaded",
+            "insertText": "\"xor\""
+          },
+          {
+            "label": "' '",
+            "kind": 20,
+            "detail": "' '[return CHARACTER]",
+            "insertText": "' '"
+          },
+          {
+            "label": "'!'",
+            "kind": 20,
+            "detail": "'!'[return CHARACTER]",
+            "insertText": "'!'"
+          },
+          {
+            "label": "'\"'",
+            "kind": 20,
+            "detail": "'\"'[return CHARACTER]",
+            "insertText": "'\"'"
+          },
+          {
+            "label": "'#'",
+            "kind": 20,
+            "detail": "'#'[return CHARACTER]",
+            "insertText": "'#'"
+          },
+          {
+            "label": "'$'",
+            "kind": 20,
+            "detail": "'$'[return CHARACTER]",
+            "insertText": "'$'"
+          },
+          {
+            "label": "'%'",
+            "kind": 20,
+            "detail": "'%'[return CHARACTER]",
+            "insertText": "'%'"
+          },
+          {
+            "label": "'&'",
+            "kind": 20,
+            "detail": "'&'[return CHARACTER]",
+            "insertText": "'&'"
+          },
+          {
+            "label": "'''",
+            "kind": 20,
+            "detail": "'''[return CHARACTER]",
+            "insertText": "'''"
+          },
+          {
+            "label": "'('",
+            "kind": 20,
+            "detail": "'('[return CHARACTER]",
+            "insertText": "'('"
+          },
+          {
+            "label": "')'",
+            "kind": 20,
+            "detail": "')'[return CHARACTER]",
+            "insertText": "')'"
+          },
+          {
+            "label": "'*'",
+            "kind": 20,
+            "detail": "'*'[return CHARACTER]",
+            "insertText": "'*'"
+          },
+          {
+            "label": "'+'",
+            "kind": 20,
+            "detail": "'+'[return CHARACTER]",
+            "insertText": "'+'"
+          },
+          {
+            "label": "','",
+            "kind": 20,
+            "detail": "','[return CHARACTER]",
+            "insertText": "','"
+          },
+          {
+            "label": "'-'",
+            "kind": 20,
+            "detail": "'-'[return CHARACTER]",
+            "insertText": "'-'"
+          },
+          {
+            "label": "'.'",
+            "kind": 20,
+            "detail": "'.'[return CHARACTER]",
+            "insertText": "'.'"
+          },
+          {
+            "label": "'/'",
+            "kind": 20,
+            "detail": "'/'[return CHARACTER]",
+            "insertText": "'/'"
+          },
+          {
+            "label": "'0'",
+            "kind": null,
+            "detail": "+2 overloaded",
+            "insertText": "'0'"
+          },
+          {
+            "label": "'0'",
+            "kind": 20,
+            "detail": "'0'[return STD_ULOGIC]",
+            "insertText": "'0'"
+          },
+          {
+            "label": "'1'",
+            "kind": null,
+            "detail": "+2 overloaded",
+            "insertText": "'1'"
+          },
+          {
+            "label": "'1'",
+            "kind": 20,
+            "detail": "'1'[return STD_ULOGIC]",
+            "insertText": "'1'"
+          },
+          {
+            "label": "'2'",
+            "kind": 20,
+            "detail": "'2'[return CHARACTER]",
+            "insertText": "'2'"
+          },
+          {
+            "label": "'3'",
+            "kind": 20,
+            "detail": "'3'[return CHARACTER]",
+            "insertText": "'3'"
+          },
+          {
+            "label": "'4'",
+            "kind": 20,
+            "detail": "'4'[return CHARACTER]",
+            "insertText": "'4'"
+          },
+          {
+            "label": "'5'",
+            "kind": 20,
+            "detail": "'5'[return CHARACTER]",
+            "insertText": "'5'"
+          },
+          {
+            "label": "'6'",
+            "kind": 20,
+            "detail": "'6'[return CHARACTER]",
+            "insertText": "'6'"
+          },
+          {
+            "label": "'7'",
+            "kind": 20,
+            "detail": "'7'[return CHARACTER]",
+            "insertText": "'7'"
+          },
+          {
+            "label": "'8'",
+            "kind": 20,
+            "detail": "'8'[return CHARACTER]",
+            "insertText": "'8'"
+          },
+          {
+            "label": "'9'",
+            "kind": 20,
+            "detail": "'9'[return CHARACTER]",
+            "insertText": "'9'"
+          },
+          {
+            "label": "':'",
+            "kind": 20,
+            "detail": "':'[return CHARACTER]",
+            "insertText": "':'"
+          },
+          {
+            "label": "';'",
+            "kind": 20,
+            "detail": "';'[return CHARACTER]",
+            "insertText": "';'"
+          },
+          {
+            "label": "'<'",
+            "kind": 20,
+            "detail": "'<'[return CHARACTER]",
+            "insertText": "'<'"
+          },
+          {
+            "label": "'='",
+            "kind": 20,
+            "detail": "'='[return CHARACTER]",
+            "insertText": "'='"
+          },
+          {
+            "label": "'>'",
+            "kind": 20,
+            "detail": "'>'[return CHARACTER]",
+            "insertText": "'>'"
+          },
+          {
+            "label": "'?'",
+            "kind": 20,
+            "detail": "'?'[return CHARACTER]",
+            "insertText": "'?'"
+          },
+          {
+            "label": "'@'",
+            "kind": 20,
+            "detail": "'@'[return CHARACTER]",
+            "insertText": "'@'"
+          },
+          {
+            "label": "'A'",
+            "kind": 20,
+            "detail": "'A'[return CHARACTER]",
+            "insertText": "'A'"
+          },
+          {
+            "label": "'B'",
+            "kind": 20,
+            "detail": "'B'[return CHARACTER]",
+            "insertText": "'B'"
+          },
+          {
+            "label": "'C'",
+            "kind": 20,
+            "detail": "'C'[return CHARACTER]",
+            "insertText": "'C'"
+          },
+          {
+            "label": "'D'",
+            "kind": 20,
+            "detail": "'D'[return CHARACTER]",
+            "insertText": "'D'"
+          },
+          {
+            "label": "'E'",
+            "kind": 20,
+            "detail": "'E'[return CHARACTER]",
+            "insertText": "'E'"
+          },
+          {
+            "label": "'F'",
+            "kind": 20,
+            "detail": "'F'[return CHARACTER]",
+            "insertText": "'F'"
+          },
+          {
+            "label": "'G'",
+            "kind": 20,
+            "detail": "'G'[return CHARACTER]",
+            "insertText": "'G'"
+          },
+          {
+            "label": "'H'",
+            "kind": 20,
+            "detail": "'H'[return CHARACTER]",
+            "insertText": "'H'"
+          },
+          {
+            "label": "'I'",
+            "kind": 20,
+            "detail": "'I'[return CHARACTER]",
+            "insertText": "'I'"
+          },
+          {
+            "label": "'J'",
+            "kind": 20,
+            "detail": "'J'[return CHARACTER]",
+            "insertText": "'J'"
+          },
+          {
+            "label": "'K'",
+            "kind": 20,
+            "detail": "'K'[return CHARACTER]",
+            "insertText": "'K'"
+          },
+          {
+            "label": "'L'",
+            "kind": 20,
+            "detail": "'L'[return CHARACTER]",
+            "insertText": "'L'"
+          },
+          {
+            "label": "'M'",
+            "kind": 20,
+            "detail": "'M'[return CHARACTER]",
+            "insertText": "'M'"
+          },
+          {
+            "label": "'N'",
+            "kind": 20,
+            "detail": "'N'[return CHARACTER]",
+            "insertText": "'N'"
+          },
+          {
+            "label": "'O'",
+            "kind": 20,
+            "detail": "'O'[return CHARACTER]",
+            "insertText": "'O'"
+          },
+          {
+            "label": "'P'",
+            "kind": 20,
+            "detail": "'P'[return CHARACTER]",
+            "insertText": "'P'"
+          },
+          {
+            "label": "'Q'",
+            "kind": 20,
+            "detail": "'Q'[return CHARACTER]",
+            "insertText": "'Q'"
+          },
+          {
+            "label": "'R'",
+            "kind": 20,
+            "detail": "'R'[return CHARACTER]",
+            "insertText": "'R'"
+          },
+          {
+            "label": "'S'",
+            "kind": 20,
+            "detail": "'S'[return CHARACTER]",
+            "insertText": "'S'"
+          },
+          {
+            "label": "'T'",
+            "kind": 20,
+            "detail": "'T'[return CHARACTER]",
+            "insertText": "'T'"
+          },
+          {
+            "label": "'U'",
+            "kind": 20,
+            "detail": "'U'[return CHARACTER]",
+            "insertText": "'U'"
+          },
+          {
+            "label": "'V'",
+            "kind": 20,
+            "detail": "'V'[return CHARACTER]",
+            "insertText": "'V'"
+          },
+          {
+            "label": "'W'",
+            "kind": 20,
+            "detail": "'W'[return CHARACTER]",
+            "insertText": "'W'"
+          },
+          {
+            "label": "'X'",
+            "kind": 20,
+            "detail": "'X'[return CHARACTER]",
+            "insertText": "'X'"
+          },
+          {
+            "label": "'Y'",
+            "kind": 20,
+            "detail": "'Y'[return CHARACTER]",
+            "insertText": "'Y'"
+          },
+          {
+            "label": "'Z'",
+            "kind": 20,
+            "detail": "'Z'[return CHARACTER]",
+            "insertText": "'Z'"
+          },
+          {
+            "label": "'['",
+            "kind": 20,
+            "detail": "'['[return CHARACTER]",
+            "insertText": "'['"
+          },
+          {
+            "label": "'\\'",
+            "kind": 20,
+            "detail": "'\\'[return CHARACTER]",
+            "insertText": "'\\'"
+          },
+          {
+            "label": "']'",
+            "kind": 20,
+            "detail": "']'[return CHARACTER]",
+            "insertText": "']'"
+          },
+          {
+            "label": "'^'",
+            "kind": 20,
+            "detail": "'^'[return CHARACTER]",
+            "insertText": "'^'"
+          },
+          {
+            "label": "'_'",
+            "kind": 20,
+            "detail": "'_'[return CHARACTER]",
+            "insertText": "'_'"
+          },
+          {
+            "label": "'`'",
+            "kind": 20,
+            "detail": "'`'[return CHARACTER]",
+            "insertText": "'`'"
+          },
+          {
+            "label": "'a'",
+            "kind": 20,
+            "detail": "'a'[return CHARACTER]",
+            "insertText": "'a'"
+          },
+          {
+            "label": "'b'",
+            "kind": 20,
+            "detail": "'b'[return CHARACTER]",
+            "insertText": "'b'"
+          },
+          {
+            "label": "'c'",
+            "kind": 20,
+            "detail": "'c'[return CHARACTER]",
+            "insertText": "'c'"
+          },
+          {
+            "label": "'d'",
+            "kind": 20,
+            "detail": "'d'[return CHARACTER]",
+            "insertText": "'d'"
+          },
+          {
+            "label": "'e'",
+            "kind": 20,
+            "detail": "'e'[return CHARACTER]",
+            "insertText": "'e'"
+          },
+          {
+            "label": "'f'",
+            "kind": 20,
+            "detail": "'f'[return CHARACTER]",
+            "insertText": "'f'"
+          },
+          {
+            "label": "'g'",
+            "kind": 20,
+            "detail": "'g'[return CHARACTER]",
+            "insertText": "'g'"
+          },
+          {
+            "label": "'h'",
+            "kind": 20,
+            "detail": "'h'[return CHARACTER]",
+            "insertText": "'h'"
+          },
+          {
+            "label": "'i'",
+            "kind": 20,
+            "detail": "'i'[return CHARACTER]",
+            "insertText": "'i'"
+          },
+          {
+            "label": "'j'",
+            "kind": 20,
+            "detail": "'j'[return CHARACTER]",
+            "insertText": "'j'"
+          },
+          {
+            "label": "'k'",
+            "kind": 20,
+            "detail": "'k'[return CHARACTER]",
+            "insertText": "'k'"
+          },
+          {
+            "label": "'l'",
+            "kind": 20,
+            "detail": "'l'[return CHARACTER]",
+            "insertText": "'l'"
+          },
+          {
+            "label": "'m'",
+            "kind": 20,
+            "detail": "'m'[return CHARACTER]",
+            "insertText": "'m'"
+          },
+          {
+            "label": "'n'",
+            "kind": 20,
+            "detail": "'n'[return CHARACTER]",
+            "insertText": "'n'"
+          },
+          {
+            "label": "'o'",
+            "kind": 20,
+            "detail": "'o'[return CHARACTER]",
+            "insertText": "'o'"
+          },
+          {
+            "label": "'p'",
+            "kind": 20,
+            "detail": "'p'[return CHARACTER]",
+            "insertText": "'p'"
+          },
+          {
+            "label": "'q'",
+            "kind": 20,
+            "detail": "'q'[return CHARACTER]",
+            "insertText": "'q'"
+          },
+          {
+            "label": "'r'",
+            "kind": 20,
+            "detail": "'r'[return CHARACTER]",
+            "insertText": "'r'"
+          },
+          {
+            "label": "'s'",
+            "kind": 20,
+            "detail": "'s'[return CHARACTER]",
+            "insertText": "'s'"
+          },
+          {
+            "label": "'t'",
+            "kind": 20,
+            "detail": "'t'[return CHARACTER]",
+            "insertText": "'t'"
+          },
+          {
+            "label": "'u'",
+            "kind": 20,
+            "detail": "'u'[return CHARACTER]",
+            "insertText": "'u'"
+          },
+          {
+            "label": "'v'",
+            "kind": 20,
+            "detail": "'v'[return CHARACTER]",
+            "insertText": "'v'"
+          },
+          {
+            "label": "'w'",
+            "kind": 20,
+            "detail": "'w'[return CHARACTER]",
+            "insertText": "'w'"
+          },
+          {
+            "label": "'x'",
+            "kind": 20,
+            "detail": "'x'[return CHARACTER]",
+            "insertText": "'x'"
+          },
+          {
+            "label": "'y'",
+            "kind": 20,
+            "detail": "'y'[return CHARACTER]",
+            "insertText": "'y'"
+          },
+          {
+            "label": "'z'",
+            "kind": 20,
+            "detail": "'z'[return CHARACTER]",
+            "insertText": "'z'"
+          },
+          {
+            "label": "'{'",
+            "kind": 20,
+            "detail": "'{'[return CHARACTER]",
+            "insertText": "'{'"
+          },
+          {
+            "label": "'|'",
+            "kind": 20,
+            "detail": "'|'[return CHARACTER]",
+            "insertText": "'|'"
+          },
+          {
+            "label": "'}'",
+            "kind": 20,
+            "detail": "'}'[return CHARACTER]",
+            "insertText": "'}'"
+          },
+          {
+            "label": "'~'",
+            "kind": 20,
+            "detail": "'~'[return CHARACTER]",
+            "insertText": "'~'"
+          },
+          {
+            "label": "'\u00a0'",
+            "kind": 20,
+            "detail": "'\u00a0'[return CHARACTER]",
+            "insertText": "'\u00a0'"
+          },
+          {
+            "label": "'\u00a1'",
+            "kind": 20,
+            "detail": "'\u00a1'[return CHARACTER]",
+            "insertText": "'\u00a1'"
+          },
+          {
+            "label": "'\u00a2'",
+            "kind": 20,
+            "detail": "'\u00a2'[return CHARACTER]",
+            "insertText": "'\u00a2'"
+          },
+          {
+            "label": "'\u00a3'",
+            "kind": 20,
+            "detail": "'\u00a3'[return CHARACTER]",
+            "insertText": "'\u00a3'"
+          },
+          {
+            "label": "'\u00a4'",
+            "kind": 20,
+            "detail": "'\u00a4'[return CHARACTER]",
+            "insertText": "'\u00a4'"
+          },
+          {
+            "label": "'\u00a5'",
+            "kind": 20,
+            "detail": "'\u00a5'[return CHARACTER]",
+            "insertText": "'\u00a5'"
+          },
+          {
+            "label": "'\u00a6'",
+            "kind": 20,
+            "detail": "'\u00a6'[return CHARACTER]",
+            "insertText": "'\u00a6'"
+          },
+          {
+            "label": "'\u00a7'",
+            "kind": 20,
+            "detail": "'\u00a7'[return CHARACTER]",
+            "insertText": "'\u00a7'"
+          },
+          {
+            "label": "'\u00a8'",
+            "kind": 20,
+            "detail": "'\u00a8'[return CHARACTER]",
+            "insertText": "'\u00a8'"
+          },
+          {
+            "label": "'\u00a9'",
+            "kind": 20,
+            "detail": "'\u00a9'[return CHARACTER]",
+            "insertText": "'\u00a9'"
+          },
+          {
+            "label": "'\u00aa'",
+            "kind": 20,
+            "detail": "'\u00aa'[return CHARACTER]",
+            "insertText": "'\u00aa'"
+          },
+          {
+            "label": "'\u00ab'",
+            "kind": 20,
+            "detail": "'\u00ab'[return CHARACTER]",
+            "insertText": "'\u00ab'"
+          },
+          {
+            "label": "'\u00ac'",
+            "kind": 20,
+            "detail": "'\u00ac'[return CHARACTER]",
+            "insertText": "'\u00ac'"
+          },
+          {
+            "label": "'\u00ad'",
+            "kind": 20,
+            "detail": "'\u00ad'[return CHARACTER]",
+            "insertText": "'\u00ad'"
+          },
+          {
+            "label": "'\u00ae'",
+            "kind": 20,
+            "detail": "'\u00ae'[return CHARACTER]",
+            "insertText": "'\u00ae'"
+          },
+          {
+            "label": "'\u00af'",
+            "kind": 20,
+            "detail": "'\u00af'[return CHARACTER]",
+            "insertText": "'\u00af'"
+          },
+          {
+            "label": "'\u00b0'",
+            "kind": 20,
+            "detail": "'\u00b0'[return CHARACTER]",
+            "insertText": "'\u00b0'"
+          },
+          {
+            "label": "'\u00b1'",
+            "kind": 20,
+            "detail": "'\u00b1'[return CHARACTER]",
+            "insertText": "'\u00b1'"
+          },
+          {
+            "label": "'\u00b2'",
+            "kind": 20,
+            "detail": "'\u00b2'[return CHARACTER]",
+            "insertText": "'\u00b2'"
+          },
+          {
+            "label": "'\u00b3'",
+            "kind": 20,
+            "detail": "'\u00b3'[return CHARACTER]",
+            "insertText": "'\u00b3'"
+          },
+          {
+            "label": "'\u00b4'",
+            "kind": 20,
+            "detail": "'\u00b4'[return CHARACTER]",
+            "insertText": "'\u00b4'"
+          },
+          {
+            "label": "'\u00b5'",
+            "kind": 20,
+            "detail": "'\u00b5'[return CHARACTER]",
+            "insertText": "'\u00b5'"
+          },
+          {
+            "label": "'\u00b6'",
+            "kind": 20,
+            "detail": "'\u00b6'[return CHARACTER]",
+            "insertText": "'\u00b6'"
+          },
+          {
+            "label": "'\u00b7'",
+            "kind": 20,
+            "detail": "'\u00b7'[return CHARACTER]",
+            "insertText": "'\u00b7'"
+          },
+          {
+            "label": "'\u00b8'",
+            "kind": 20,
+            "detail": "'\u00b8'[return CHARACTER]",
+            "insertText": "'\u00b8'"
+          },
+          {
+            "label": "'\u00b9'",
+            "kind": 20,
+            "detail": "'\u00b9'[return CHARACTER]",
+            "insertText": "'\u00b9'"
+          },
+          {
+            "label": "'\u00ba'",
+            "kind": 20,
+            "detail": "'\u00ba'[return CHARACTER]",
+            "insertText": "'\u00ba'"
+          },
+          {
+            "label": "'\u00bb'",
+            "kind": 20,
+            "detail": "'\u00bb'[return CHARACTER]",
+            "insertText": "'\u00bb'"
+          },
+          {
+            "label": "'\u00bc'",
+            "kind": 20,
+            "detail": "'\u00bc'[return CHARACTER]",
+            "insertText": "'\u00bc'"
+          },
+          {
+            "label": "'\u00bd'",
+            "kind": 20,
+            "detail": "'\u00bd'[return CHARACTER]",
+            "insertText": "'\u00bd'"
+          },
+          {
+            "label": "'\u00be'",
+            "kind": 20,
+            "detail": "'\u00be'[return CHARACTER]",
+            "insertText": "'\u00be'"
+          },
+          {
+            "label": "'\u00bf'",
+            "kind": 20,
+            "detail": "'\u00bf'[return CHARACTER]",
+            "insertText": "'\u00bf'"
+          },
+          {
+            "label": "'\u00c0'",
+            "kind": 20,
+            "detail": "'\u00c0'[return CHARACTER]",
+            "insertText": "'\u00c0'"
+          },
+          {
+            "label": "'\u00c1'",
+            "kind": 20,
+            "detail": "'\u00c1'[return CHARACTER]",
+            "insertText": "'\u00c1'"
+          },
+          {
+            "label": "'\u00c2'",
+            "kind": 20,
+            "detail": "'\u00c2'[return CHARACTER]",
+            "insertText": "'\u00c2'"
+          },
+          {
+            "label": "'\u00c3'",
+            "kind": 20,
+            "detail": "'\u00c3'[return CHARACTER]",
+            "insertText": "'\u00c3'"
+          },
+          {
+            "label": "'\u00c4'",
+            "kind": 20,
+            "detail": "'\u00c4'[return CHARACTER]",
+            "insertText": "'\u00c4'"
+          },
+          {
+            "label": "'\u00c5'",
+            "kind": 20,
+            "detail": "'\u00c5'[return CHARACTER]",
+            "insertText": "'\u00c5'"
+          },
+          {
+            "label": "'\u00c6'",
+            "kind": 20,
+            "detail": "'\u00c6'[return CHARACTER]",
+            "insertText": "'\u00c6'"
+          },
+          {
+            "label": "'\u00c7'",
+            "kind": 20,
+            "detail": "'\u00c7'[return CHARACTER]",
+            "insertText": "'\u00c7'"
+          },
+          {
+            "label": "'\u00c8'",
+            "kind": 20,
+            "detail": "'\u00c8'[return CHARACTER]",
+            "insertText": "'\u00c8'"
+          },
+          {
+            "label": "'\u00c9'",
+            "kind": 20,
+            "detail": "'\u00c9'[return CHARACTER]",
+            "insertText": "'\u00c9'"
+          },
+          {
+            "label": "'\u00ca'",
+            "kind": 20,
+            "detail": "'\u00ca'[return CHARACTER]",
+            "insertText": "'\u00ca'"
+          },
+          {
+            "label": "'\u00cb'",
+            "kind": 20,
+            "detail": "'\u00cb'[return CHARACTER]",
+            "insertText": "'\u00cb'"
+          },
+          {
+            "label": "'\u00cc'",
+            "kind": 20,
+            "detail": "'\u00cc'[return CHARACTER]",
+            "insertText": "'\u00cc'"
+          },
+          {
+            "label": "'\u00cd'",
+            "kind": 20,
+            "detail": "'\u00cd'[return CHARACTER]",
+            "insertText": "'\u00cd'"
+          },
+          {
+            "label": "'\u00ce'",
+            "kind": 20,
+            "detail": "'\u00ce'[return CHARACTER]",
+            "insertText": "'\u00ce'"
+          },
+          {
+            "label": "'\u00cf'",
+            "kind": 20,
+            "detail": "'\u00cf'[return CHARACTER]",
+            "insertText": "'\u00cf'"
+          },
+          {
+            "label": "'\u00d0'",
+            "kind": 20,
+            "detail": "'\u00d0'[return CHARACTER]",
+            "insertText": "'\u00d0'"
+          },
+          {
+            "label": "'\u00d1'",
+            "kind": 20,
+            "detail": "'\u00d1'[return CHARACTER]",
+            "insertText": "'\u00d1'"
+          },
+          {
+            "label": "'\u00d2'",
+            "kind": 20,
+            "detail": "'\u00d2'[return CHARACTER]",
+            "insertText": "'\u00d2'"
+          },
+          {
+            "label": "'\u00d3'",
+            "kind": 20,
+            "detail": "'\u00d3'[return CHARACTER]",
+            "insertText": "'\u00d3'"
+          },
+          {
+            "label": "'\u00d4'",
+            "kind": 20,
+            "detail": "'\u00d4'[return CHARACTER]",
+            "insertText": "'\u00d4'"
+          },
+          {
+            "label": "'\u00d5'",
+            "kind": 20,
+            "detail": "'\u00d5'[return CHARACTER]",
+            "insertText": "'\u00d5'"
+          },
+          {
+            "label": "'\u00d6'",
+            "kind": 20,
+            "detail": "'\u00d6'[return CHARACTER]",
+            "insertText": "'\u00d6'"
+          },
+          {
+            "label": "'\u00d7'",
+            "kind": 20,
+            "detail": "'\u00d7'[return CHARACTER]",
+            "insertText": "'\u00d7'"
+          },
+          {
+            "label": "'\u00d8'",
+            "kind": 20,
+            "detail": "'\u00d8'[return CHARACTER]",
+            "insertText": "'\u00d8'"
+          },
+          {
+            "label": "'\u00d9'",
+            "kind": 20,
+            "detail": "'\u00d9'[return CHARACTER]",
+            "insertText": "'\u00d9'"
+          },
+          {
+            "label": "'\u00da'",
+            "kind": 20,
+            "detail": "'\u00da'[return CHARACTER]",
+            "insertText": "'\u00da'"
+          },
+          {
+            "label": "'\u00db'",
+            "kind": 20,
+            "detail": "'\u00db'[return CHARACTER]",
+            "insertText": "'\u00db'"
+          },
+          {
+            "label": "'\u00dc'",
+            "kind": 20,
+            "detail": "'\u00dc'[return CHARACTER]",
+            "insertText": "'\u00dc'"
+          },
+          {
+            "label": "'\u00dd'",
+            "kind": 20,
+            "detail": "'\u00dd'[return CHARACTER]",
+            "insertText": "'\u00dd'"
+          },
+          {
+            "label": "'\u00de'",
+            "kind": 20,
+            "detail": "'\u00de'[return CHARACTER]",
+            "insertText": "'\u00de'"
+          },
+          {
+            "label": "'\u00df'",
+            "kind": 20,
+            "detail": "'\u00df'[return CHARACTER]",
+            "insertText": "'\u00df'"
+          },
+          {
+            "label": "'\u00e0'",
+            "kind": 20,
+            "detail": "'\u00e0'[return CHARACTER]",
+            "insertText": "'\u00e0'"
+          },
+          {
+            "label": "'\u00e1'",
+            "kind": 20,
+            "detail": "'\u00e1'[return CHARACTER]",
+            "insertText": "'\u00e1'"
+          },
+          {
+            "label": "'\u00e2'",
+            "kind": 20,
+            "detail": "'\u00e2'[return CHARACTER]",
+            "insertText": "'\u00e2'"
+          },
+          {
+            "label": "'\u00e3'",
+            "kind": 20,
+            "detail": "'\u00e3'[return CHARACTER]",
+            "insertText": "'\u00e3'"
+          },
+          {
+            "label": "'\u00e4'",
+            "kind": 20,
+            "detail": "'\u00e4'[return CHARACTER]",
+            "insertText": "'\u00e4'"
+          },
+          {
+            "label": "'\u00e5'",
+            "kind": 20,
+            "detail": "'\u00e5'[return CHARACTER]",
+            "insertText": "'\u00e5'"
+          },
+          {
+            "label": "'\u00e6'",
+            "kind": 20,
+            "detail": "'\u00e6'[return CHARACTER]",
+            "insertText": "'\u00e6'"
+          },
+          {
+            "label": "'\u00e7'",
+            "kind": 20,
+            "detail": "'\u00e7'[return CHARACTER]",
+            "insertText": "'\u00e7'"
+          },
+          {
+            "label": "'\u00e8'",
+            "kind": 20,
+            "detail": "'\u00e8'[return CHARACTER]",
+            "insertText": "'\u00e8'"
+          },
+          {
+            "label": "'\u00e9'",
+            "kind": 20,
+            "detail": "'\u00e9'[return CHARACTER]",
+            "insertText": "'\u00e9'"
+          },
+          {
+            "label": "'\u00ea'",
+            "kind": 20,
+            "detail": "'\u00ea'[return CHARACTER]",
+            "insertText": "'\u00ea'"
+          },
+          {
+            "label": "'\u00eb'",
+            "kind": 20,
+            "detail": "'\u00eb'[return CHARACTER]",
+            "insertText": "'\u00eb'"
+          },
+          {
+            "label": "'\u00ec'",
+            "kind": 20,
+            "detail": "'\u00ec'[return CHARACTER]",
+            "insertText": "'\u00ec'"
+          },
+          {
+            "label": "'\u00ed'",
+            "kind": 20,
+            "detail": "'\u00ed'[return CHARACTER]",
+            "insertText": "'\u00ed'"
+          },
+          {
+            "label": "'\u00ee'",
+            "kind": 20,
+            "detail": "'\u00ee'[return CHARACTER]",
+            "insertText": "'\u00ee'"
+          },
+          {
+            "label": "'\u00ef'",
+            "kind": 20,
+            "detail": "'\u00ef'[return CHARACTER]",
+            "insertText": "'\u00ef'"
+          },
+          {
+            "label": "'\u00f0'",
+            "kind": 20,
+            "detail": "'\u00f0'[return CHARACTER]",
+            "insertText": "'\u00f0'"
+          },
+          {
+            "label": "'\u00f1'",
+            "kind": 20,
+            "detail": "'\u00f1'[return CHARACTER]",
+            "insertText": "'\u00f1'"
+          },
+          {
+            "label": "'\u00f2'",
+            "kind": 20,
+            "detail": "'\u00f2'[return CHARACTER]",
+            "insertText": "'\u00f2'"
+          },
+          {
+            "label": "'\u00f3'",
+            "kind": 20,
+            "detail": "'\u00f3'[return CHARACTER]",
+            "insertText": "'\u00f3'"
+          },
+          {
+            "label": "'\u00f4'",
+            "kind": 20,
+            "detail": "'\u00f4'[return CHARACTER]",
+            "insertText": "'\u00f4'"
+          },
+          {
+            "label": "'\u00f5'",
+            "kind": 20,
+            "detail": "'\u00f5'[return CHARACTER]",
+            "insertText": "'\u00f5'"
+          },
+          {
+            "label": "'\u00f6'",
+            "kind": 20,
+            "detail": "'\u00f6'[return CHARACTER]",
+            "insertText": "'\u00f6'"
+          },
+          {
+            "label": "'\u00f7'",
+            "kind": 20,
+            "detail": "'\u00f7'[return CHARACTER]",
+            "insertText": "'\u00f7'"
+          },
+          {
+            "label": "'\u00f8'",
+            "kind": 20,
+            "detail": "'\u00f8'[return CHARACTER]",
+            "insertText": "'\u00f8'"
+          },
+          {
+            "label": "'\u00f9'",
+            "kind": 20,
+            "detail": "'\u00f9'[return CHARACTER]",
+            "insertText": "'\u00f9'"
+          },
+          {
+            "label": "'\u00fa'",
+            "kind": 20,
+            "detail": "'\u00fa'[return CHARACTER]",
+            "insertText": "'\u00fa'"
+          },
+          {
+            "label": "'\u00fb'",
+            "kind": 20,
+            "detail": "'\u00fb'[return CHARACTER]",
+            "insertText": "'\u00fb'"
+          },
+          {
+            "label": "'\u00fc'",
+            "kind": 20,
+            "detail": "'\u00fc'[return CHARACTER]",
+            "insertText": "'\u00fc'"
+          },
+          {
+            "label": "'\u00fd'",
+            "kind": 20,
+            "detail": "'\u00fd'[return CHARACTER]",
+            "insertText": "'\u00fd'"
+          },
+          {
+            "label": "'\u00fe'",
+            "kind": 20,
+            "detail": "'\u00fe'[return CHARACTER]",
+            "insertText": "'\u00fe'"
+          },
+          {
+            "label": "'\u00ff'",
+            "kind": 20,
+            "detail": "'\u00ff'[return CHARACTER]",
+            "insertText": "'\u00ff'"
+          },
+          {
+            "label": "ACK",
+            "kind": 20,
+            "detail": "ACK[return CHARACTER]",
+            "insertText": "ACK"
+          },
+          {
+            "label": "APPEND_MODE",
+            "kind": 20,
+            "detail": "APPEND_MODE[return FILE_OPEN_KIND]",
+            "insertText": "APPEND_MODE"
+          },
+          {
+            "label": "BEL",
+            "kind": 20,
+            "detail": "BEL[return CHARACTER]",
+            "insertText": "BEL"
+          },
+          {
+            "label": "BINARY_READ",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "BINARY_READ"
+          },
+          {
+            "label": "BINARY_WRITE",
+            "kind": 5,
+            "detail": "procedure BINARY_WRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "BINARY_WRITE"
+          },
+          {
+            "label": "BIT",
+            "kind": 25,
+            "detail": "type 'BIT'",
+            "insertText": "BIT"
+          },
+          {
+            "label": "BIT_VECTOR",
+            "kind": 25,
+            "detail": "array type 'BIT_VECTOR'",
+            "insertText": "BIT_VECTOR"
+          },
+          {
+            "label": "BOOLEAN",
+            "kind": 25,
+            "detail": "type 'BOOLEAN'",
+            "insertText": "BOOLEAN"
+          },
+          {
+            "label": "BOOLEAN_VECTOR",
+            "kind": 25,
+            "detail": "array type 'BOOLEAN_VECTOR'",
+            "insertText": "BOOLEAN_VECTOR"
+          },
+          {
+            "label": "BREAD",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "BREAD"
+          },
+          {
+            "label": "BS",
+            "kind": 20,
+            "detail": "BS[return CHARACTER]",
+            "insertText": "BS"
+          },
+          {
+            "label": "BWRITE",
+            "kind": 5,
+            "detail": "procedure BWRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "BWRITE"
+          },
+          {
+            "label": "C128",
+            "kind": 20,
+            "detail": "C128[return CHARACTER]",
+            "insertText": "C128"
+          },
+          {
+            "label": "C129",
+            "kind": 20,
+            "detail": "C129[return CHARACTER]",
+            "insertText": "C129"
+          },
+          {
+            "label": "C130",
+            "kind": 20,
+            "detail": "C130[return CHARACTER]",
+            "insertText": "C130"
+          },
+          {
+            "label": "C131",
+            "kind": 20,
+            "detail": "C131[return CHARACTER]",
+            "insertText": "C131"
+          },
+          {
+            "label": "C132",
+            "kind": 20,
+            "detail": "C132[return CHARACTER]",
+            "insertText": "C132"
+          },
+          {
+            "label": "C133",
+            "kind": 20,
+            "detail": "C133[return CHARACTER]",
+            "insertText": "C133"
+          },
+          {
+            "label": "C134",
+            "kind": 20,
+            "detail": "C134[return CHARACTER]",
+            "insertText": "C134"
+          },
+          {
+            "label": "C135",
+            "kind": 20,
+            "detail": "C135[return CHARACTER]",
+            "insertText": "C135"
+          },
+          {
+            "label": "C136",
+            "kind": 20,
+            "detail": "C136[return CHARACTER]",
+            "insertText": "C136"
+          },
+          {
+            "label": "C137",
+            "kind": 20,
+            "detail": "C137[return CHARACTER]",
+            "insertText": "C137"
+          },
+          {
+            "label": "C138",
+            "kind": 20,
+            "detail": "C138[return CHARACTER]",
+            "insertText": "C138"
+          },
+          {
+            "label": "C139",
+            "kind": 20,
+            "detail": "C139[return CHARACTER]",
+            "insertText": "C139"
+          },
+          {
+            "label": "C140",
+            "kind": 20,
+            "detail": "C140[return CHARACTER]",
+            "insertText": "C140"
+          },
+          {
+            "label": "C141",
+            "kind": 20,
+            "detail": "C141[return CHARACTER]",
+            "insertText": "C141"
+          },
+          {
+            "label": "C142",
+            "kind": 20,
+            "detail": "C142[return CHARACTER]",
+            "insertText": "C142"
+          },
+          {
+            "label": "C143",
+            "kind": 20,
+            "detail": "C143[return CHARACTER]",
+            "insertText": "C143"
+          },
+          {
+            "label": "C144",
+            "kind": 20,
+            "detail": "C144[return CHARACTER]",
+            "insertText": "C144"
+          },
+          {
+            "label": "C145",
+            "kind": 20,
+            "detail": "C145[return CHARACTER]",
+            "insertText": "C145"
+          },
+          {
+            "label": "C146",
+            "kind": 20,
+            "detail": "C146[return CHARACTER]",
+            "insertText": "C146"
+          },
+          {
+            "label": "C147",
+            "kind": 20,
+            "detail": "C147[return CHARACTER]",
+            "insertText": "C147"
+          },
+          {
+            "label": "C148",
+            "kind": 20,
+            "detail": "C148[return CHARACTER]",
+            "insertText": "C148"
+          },
+          {
+            "label": "C149",
+            "kind": 20,
+            "detail": "C149[return CHARACTER]",
+            "insertText": "C149"
+          },
+          {
+            "label": "C150",
+            "kind": 20,
+            "detail": "C150[return CHARACTER]",
+            "insertText": "C150"
+          },
+          {
+            "label": "C151",
+            "kind": 20,
+            "detail": "C151[return CHARACTER]",
+            "insertText": "C151"
+          },
+          {
+            "label": "C152",
+            "kind": 20,
+            "detail": "C152[return CHARACTER]",
+            "insertText": "C152"
+          },
+          {
+            "label": "C153",
+            "kind": 20,
+            "detail": "C153[return CHARACTER]",
+            "insertText": "C153"
+          },
+          {
+            "label": "C154",
+            "kind": 20,
+            "detail": "C154[return CHARACTER]",
+            "insertText": "C154"
+          },
+          {
+            "label": "C155",
+            "kind": 20,
+            "detail": "C155[return CHARACTER]",
+            "insertText": "C155"
+          },
+          {
+            "label": "C156",
+            "kind": 20,
+            "detail": "C156[return CHARACTER]",
+            "insertText": "C156"
+          },
+          {
+            "label": "C157",
+            "kind": 20,
+            "detail": "C157[return CHARACTER]",
+            "insertText": "C157"
+          },
+          {
+            "label": "C158",
+            "kind": 20,
+            "detail": "C158[return CHARACTER]",
+            "insertText": "C158"
+          },
+          {
+            "label": "C159",
+            "kind": 20,
+            "detail": "C159[return CHARACTER]",
+            "insertText": "C159"
+          },
+          {
+            "label": "CAN",
+            "kind": 20,
+            "detail": "CAN[return CHARACTER]",
+            "insertText": "CAN"
+          },
+          {
+            "label": "CHARACTER",
+            "kind": 25,
+            "detail": "type 'CHARACTER'",
+            "insertText": "CHARACTER"
+          },
+          {
+            "label": "CR",
+            "kind": 20,
+            "detail": "CR[return CHARACTER]",
+            "insertText": "CR"
+          },
+          {
+            "label": "DC1",
+            "kind": 20,
+            "detail": "DC1[return CHARACTER]",
+            "insertText": "DC1"
+          },
+          {
+            "label": "DC2",
+            "kind": 20,
+            "detail": "DC2[return CHARACTER]",
+            "insertText": "DC2"
+          },
+          {
+            "label": "DC3",
+            "kind": 20,
+            "detail": "DC3[return CHARACTER]",
+            "insertText": "DC3"
+          },
+          {
+            "label": "DC4",
+            "kind": 20,
+            "detail": "DC4[return CHARACTER]",
+            "insertText": "DC4"
+          },
+          {
+            "label": "DEL",
+            "kind": 20,
+            "detail": "DEL[return CHARACTER]",
+            "insertText": "DEL"
+          },
+          {
+            "label": "DELAY_LENGTH",
+            "kind": 25,
+            "detail": "subtype 'DELAY_LENGTH'",
+            "insertText": "DELAY_LENGTH"
+          },
+          {
+            "label": "DLE",
+            "kind": 20,
+            "detail": "DLE[return CHARACTER]",
+            "insertText": "DLE"
+          },
+          {
+            "label": "EM",
+            "kind": 20,
+            "detail": "EM[return CHARACTER]",
+            "insertText": "EM"
+          },
+          {
+            "label": "ENQ",
+            "kind": 20,
+            "detail": "ENQ[return CHARACTER]",
+            "insertText": "ENQ"
+          },
+          {
+            "label": "EOT",
+            "kind": 20,
+            "detail": "EOT[return CHARACTER]",
+            "insertText": "EOT"
+          },
+          {
+            "label": "ERROR",
+            "kind": 20,
+            "detail": "ERROR[return SEVERITY_LEVEL]",
+            "insertText": "ERROR"
+          },
+          {
+            "label": "ESC",
+            "kind": 20,
+            "detail": "ESC[return CHARACTER]",
+            "insertText": "ESC"
+          },
+          {
+            "label": "ETB",
+            "kind": 20,
+            "detail": "ETB[return CHARACTER]",
+            "insertText": "ETB"
+          },
+          {
+            "label": "ETX",
+            "kind": 20,
+            "detail": "ETX[return CHARACTER]",
+            "insertText": "ETX"
+          },
+          {
+            "label": "FAILURE",
+            "kind": 20,
+            "detail": "FAILURE[return SEVERITY_LEVEL]",
+            "insertText": "FAILURE"
+          },
+          {
+            "label": "FALLING_EDGE",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "FALLING_EDGE"
+          },
+          {
+            "label": "FALSE",
+            "kind": 20,
+            "detail": "FALSE[return BOOLEAN]",
+            "insertText": "FALSE"
+          },
+          {
+            "label": "FF",
+            "kind": 20,
+            "detail": "FF[return CHARACTER]",
+            "insertText": "FF"
+          },
+          {
+            "label": "FILE_OPEN_KIND",
+            "kind": 25,
+            "detail": "type 'FILE_OPEN_KIND'",
+            "insertText": "FILE_OPEN_KIND"
+          },
+          {
+            "label": "FILE_OPEN_STATUS",
+            "kind": 25,
+            "detail": "type 'FILE_OPEN_STATUS'",
+            "insertText": "FILE_OPEN_STATUS"
+          },
+          {
+            "label": "FOREIGN",
+            "kind": 18,
+            "detail": "attribute 'FOREIGN'",
+            "insertText": "FOREIGN"
+          },
+          {
+            "label": "FSP",
+            "kind": 20,
+            "detail": "FSP[return CHARACTER]",
+            "insertText": "FSP"
+          },
+          {
+            "label": "GSP",
+            "kind": 20,
+            "detail": "GSP[return CHARACTER]",
+            "insertText": "GSP"
+          },
+          {
+            "label": "HEX_READ",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "HEX_READ"
+          },
+          {
+            "label": "HEX_WRITE",
+            "kind": 5,
+            "detail": "procedure HEX_WRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "HEX_WRITE"
+          },
+          {
+            "label": "HREAD",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "HREAD"
+          },
+          {
+            "label": "HT",
+            "kind": 20,
+            "detail": "HT[return CHARACTER]",
+            "insertText": "HT"
+          },
+          {
+            "label": "HWRITE",
+            "kind": 3,
+            "detail": "procedure HWRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "HWRITE"
+          },
+          {
+            "label": "INTEGER",
+            "kind": 25,
+            "detail": "integer type 'INTEGER'",
+            "insertText": "INTEGER"
+          },
+          {
+            "label": "INTEGER_VECTOR",
+            "kind": 25,
+            "detail": "array type 'INTEGER_VECTOR'",
+            "insertText": "INTEGER_VECTOR"
+          },
+          {
+            "label": "Is_X",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "Is_X"
+          },
+          {
+            "label": "LF",
+            "kind": 20,
+            "detail": "LF[return CHARACTER]",
+            "insertText": "LF"
+          },
+          {
+            "label": "MAXIMUM",
+            "kind": 3,
+            "detail": "+17 overloaded",
+            "insertText": "MAXIMUM"
+          },
+          {
+            "label": "MINIMUM",
+            "kind": 3,
+            "detail": "+17 overloaded",
+            "insertText": "MINIMUM"
+          },
+          {
+            "label": "MODE_ERROR",
+            "kind": 20,
+            "detail": "MODE_ERROR[return FILE_OPEN_STATUS]",
+            "insertText": "MODE_ERROR"
+          },
+          {
+            "label": "NAK",
+            "kind": 20,
+            "detail": "NAK[return CHARACTER]",
+            "insertText": "NAK"
+          },
+          {
+            "label": "NAME_ERROR",
+            "kind": 20,
+            "detail": "NAME_ERROR[return FILE_OPEN_STATUS]",
+            "insertText": "NAME_ERROR"
+          },
+          {
+            "label": "NATURAL",
+            "kind": 25,
+            "detail": "subtype 'NATURAL'",
+            "insertText": "NATURAL"
+          },
+          {
+            "label": "NOTE",
+            "kind": 20,
+            "detail": "NOTE[return SEVERITY_LEVEL]",
+            "insertText": "NOTE"
+          },
+          {
+            "label": "NOW",
+            "kind": 3,
+            "detail": "function NOW[return DELAY_LENGTH]",
+            "insertText": "NOW"
+          },
+          {
+            "label": "NUL",
+            "kind": 20,
+            "detail": "NUL[return CHARACTER]",
+            "insertText": "NUL"
+          },
+          {
+            "label": "OCTAL_READ",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "OCTAL_READ"
+          },
+          {
+            "label": "OCTAL_WRITE",
+            "kind": 5,
+            "detail": "procedure OCTAL_WRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "OCTAL_WRITE"
+          },
+          {
+            "label": "OPEN_OK",
+            "kind": 20,
+            "detail": "OPEN_OK[return FILE_OPEN_STATUS]",
+            "insertText": "OPEN_OK"
+          },
+          {
+            "label": "OREAD",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "OREAD"
+          },
+          {
+            "label": "OWRITE",
+            "kind": 3,
+            "detail": "procedure OWRITE[LINE, STD_ULOGIC_VECTOR, SIDE, WIDTH]",
+            "insertText": "OWRITE"
+          },
+          {
+            "label": "POSITIVE",
+            "kind": 25,
+            "detail": "subtype 'POSITIVE'",
+            "insertText": "POSITIVE"
+          },
+          {
+            "label": "READ",
+            "kind": 3,
+            "detail": "+4 overloaded",
+            "insertText": "READ"
+          },
+          {
+            "label": "READ_MODE",
+            "kind": 20,
+            "detail": "READ_MODE[return FILE_OPEN_KIND]",
+            "insertText": "READ_MODE"
+          },
+          {
+            "label": "REAL",
+            "kind": 25,
+            "detail": "real type 'REAL'",
+            "insertText": "REAL"
+          },
+          {
+            "label": "REAL_VECTOR",
+            "kind": 25,
+            "detail": "array type 'REAL_VECTOR'",
+            "insertText": "REAL_VECTOR"
+          },
+          {
+            "label": "RISING_EDGE",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "RISING_EDGE"
+          },
+          {
+            "label": "RSP",
+            "kind": 20,
+            "detail": "RSP[return CHARACTER]",
+            "insertText": "RSP"
+          },
+          {
+            "label": "SEVERITY_LEVEL",
+            "kind": 25,
+            "detail": "type 'SEVERITY_LEVEL'",
+            "insertText": "SEVERITY_LEVEL"
+          },
+          {
+            "label": "SI",
+            "kind": 20,
+            "detail": "SI[return CHARACTER]",
+            "insertText": "SI"
+          },
+          {
+            "label": "SO",
+            "kind": 20,
+            "detail": "SO[return CHARACTER]",
+            "insertText": "SO"
+          },
+          {
+            "label": "SOH",
+            "kind": 20,
+            "detail": "SOH[return CHARACTER]",
+            "insertText": "SOH"
+          },
+          {
+            "label": "STATUS_ERROR",
+            "kind": 20,
+            "detail": "STATUS_ERROR[return FILE_OPEN_STATUS]",
+            "insertText": "STATUS_ERROR"
+          },
+          {
+            "label": "STD_LOGIC",
+            "kind": 25,
+            "detail": "subtype 'STD_LOGIC'",
+            "insertText": "STD_LOGIC"
+          },
+          {
+            "label": "STD_LOGIC_VECTOR",
+            "kind": 25,
+            "detail": "subtype 'STD_LOGIC_VECTOR'",
+            "insertText": "STD_LOGIC_VECTOR"
+          },
+          {
+            "label": "STD_ULOGIC",
+            "kind": 25,
+            "detail": "type 'STD_ULOGIC'",
+            "insertText": "STD_ULOGIC"
+          },
+          {
+            "label": "STD_ULOGIC_VECTOR",
+            "kind": 25,
+            "detail": "array type 'STD_ULOGIC_VECTOR'",
+            "insertText": "STD_ULOGIC_VECTOR"
+          },
+          {
+            "label": "STRING",
+            "kind": 25,
+            "detail": "array type 'STRING'",
+            "insertText": "STRING"
+          },
+          {
+            "label": "STX",
+            "kind": 20,
+            "detail": "STX[return CHARACTER]",
+            "insertText": "STX"
+          },
+          {
+            "label": "SUB",
+            "kind": 20,
+            "detail": "SUB[return CHARACTER]",
+            "insertText": "SUB"
+          },
+          {
+            "label": "SYN",
+            "kind": 20,
+            "detail": "SYN[return CHARACTER]",
+            "insertText": "SYN"
+          },
+          {
+            "label": "TIME",
+            "kind": 25,
+            "detail": "physical type 'TIME'",
+            "insertText": "TIME"
+          },
+          {
+            "label": "TIME_VECTOR",
+            "kind": 25,
+            "detail": "array type 'TIME_VECTOR'",
+            "insertText": "TIME_VECTOR"
+          },
+          {
+            "label": "TO_01",
+            "kind": 3,
+            "detail": "+4 overloaded",
+            "insertText": "TO_01"
+          },
+          {
+            "label": "TO_BINARY_STRING",
+            "kind": 5,
+            "detail": "function TO_BINARY_STRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_BINARY_STRING"
+          },
+          {
+            "label": "TO_BSTRING",
+            "kind": 5,
+            "detail": "function TO_BSTRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_BSTRING"
+          },
+          {
+            "label": "TO_HEX_STRING",
+            "kind": 5,
+            "detail": "function TO_HEX_STRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_HEX_STRING"
+          },
+          {
+            "label": "TO_HSTRING",
+            "kind": 3,
+            "detail": "function TO_HSTRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_HSTRING"
+          },
+          {
+            "label": "TO_OCTAL_STRING",
+            "kind": 5,
+            "detail": "function TO_OCTAL_STRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_OCTAL_STRING"
+          },
+          {
+            "label": "TO_OSTRING",
+            "kind": 3,
+            "detail": "function TO_OSTRING[BIT_VECTOR return STRING]",
+            "insertText": "TO_OSTRING"
+          },
+          {
+            "label": "TO_STRING",
+            "kind": 3,
+            "detail": "+15 overloaded",
+            "insertText": "TO_STRING"
+          },
+          {
+            "label": "TRUE",
+            "kind": 20,
+            "detail": "TRUE[return BOOLEAN]",
+            "insertText": "TRUE"
+          },
+          {
+            "label": "To_BV",
+            "kind": 5,
+            "detail": "function To_BV[STD_ULOGIC_VECTOR, BIT return BIT_VECTOR]",
+            "insertText": "To_BV"
+          },
+          {
+            "label": "To_Bit_Vector",
+            "kind": 5,
+            "detail": "function To_Bit_Vector[STD_ULOGIC_VECTOR, BIT return BIT_VECTOR]",
+            "insertText": "To_Bit_Vector"
+          },
+          {
+            "label": "To_SLV",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_SLV"
+          },
+          {
+            "label": "To_SULV",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_SULV"
+          },
+          {
+            "label": "To_StdLogicVector",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_StdLogicVector"
+          },
+          {
+            "label": "To_StdULogic",
+            "kind": 3,
+            "detail": "function To_StdULogic[BIT return STD_ULOGIC]",
+            "insertText": "To_StdULogic"
+          },
+          {
+            "label": "To_StdULogicVector",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_StdULogicVector"
+          },
+          {
+            "label": "To_Std_Logic_Vector",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_Std_Logic_Vector"
+          },
+          {
+            "label": "To_Std_ULogic_Vector",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "To_Std_ULogic_Vector"
+          },
+          {
+            "label": "To_UX01",
+            "kind": 3,
+            "detail": "+4 overloaded",
+            "insertText": "To_UX01"
+          },
+          {
+            "label": "To_X01",
+            "kind": 3,
+            "detail": "+4 overloaded",
+            "insertText": "To_X01"
+          },
+          {
+            "label": "To_X01Z",
+            "kind": 3,
+            "detail": "+4 overloaded",
+            "insertText": "To_X01Z"
+          },
+          {
+            "label": "To_bit",
+            "kind": 3,
+            "detail": "function To_bit[STD_ULOGIC, BIT return BIT]",
+            "insertText": "To_bit"
+          },
+          {
+            "label": "To_bitvector",
+            "kind": 3,
+            "detail": "function To_bitvector[STD_ULOGIC_VECTOR, BIT return BIT_VECTOR]",
+            "insertText": "To_bitvector"
+          },
+          {
+            "label": "USP",
+            "kind": 20,
+            "detail": "USP[return CHARACTER]",
+            "insertText": "USP"
+          },
+          {
+            "label": "UX01",
+            "kind": 25,
+            "detail": "subtype 'UX01'",
+            "insertText": "UX01"
+          },
+          {
+            "label": "UX01Z",
+            "kind": 25,
+            "detail": "subtype 'UX01Z'",
+            "insertText": "UX01Z"
+          },
+          {
+            "label": "VT",
+            "kind": 20,
+            "detail": "VT[return CHARACTER]",
+            "insertText": "VT"
+          },
+          {
+            "label": "WARNING",
+            "kind": 20,
+            "detail": "WARNING[return SEVERITY_LEVEL]",
+            "insertText": "WARNING"
+          },
+          {
+            "label": "WRITE",
+            "kind": 3,
+            "detail": "+2 overloaded",
+            "insertText": "WRITE"
+          },
+          {
+            "label": "WRITE_MODE",
+            "kind": 20,
+            "detail": "WRITE_MODE[return FILE_OPEN_KIND]",
+            "insertText": "WRITE_MODE"
+          },
+          {
+            "label": "X01",
+            "kind": 25,
+            "detail": "subtype 'X01'",
+            "insertText": "X01"
+          },
+          {
+            "label": "X01Z",
+            "kind": 25,
+            "detail": "subtype 'X01Z'",
+            "insertText": "X01Z"
+          },
+          {
+            "label": "a",
+            "kind": 23,
+            "detail": "port 'a' : in",
+            "insertText": "a"
+          },
+          {
+            "label": "and_gate instantiation",
+            "kind": 9,
+            "detail": "",
+            "insertText": "and_gate"
+          },
+          {
+            "label": "falling_edge",
+            "kind": 3,
+            "detail": "function falling_edge[STD_ULOGIC return BOOLEAN]",
+            "insertText": "falling_edge"
+          },
+          {
+            "label": "fs",
+            "kind": 11,
+            "detail": "physical literal 'fs'",
+            "insertText": "fs"
+          },
+          {
+            "label": "hr",
+            "kind": 11,
+            "detail": "physical literal 'hr'",
+            "insertText": "hr"
+          },
+          {
+            "label": "ieee",
+            "kind": 9,
+            "detail": "library 'ieee'",
+            "insertText": "ieee"
+          },
+          {
+            "label": "min",
+            "kind": 11,
+            "detail": "physical literal 'min'",
+            "insertText": "min"
+          },
+          {
+            "label": "ms",
+            "kind": 11,
+            "detail": "physical literal 'ms'",
+            "insertText": "ms"
+          },
+          {
+            "label": "ns",
+            "kind": 11,
+            "detail": "physical literal 'ns'",
+            "insertText": "ns"
+          },
+          {
+            "label": "ps",
+            "kind": 11,
+            "detail": "physical literal 'ps'",
+            "insertText": "ps"
+          },
+          {
+            "label": "resolved",
+            "kind": 3,
+            "detail": "function resolved[STD_ULOGIC_VECTOR return STD_ULOGIC]",
+            "insertText": "resolved"
+          },
+          {
+            "label": "rising_edge",
+            "kind": 3,
+            "detail": "function rising_edge[STD_ULOGIC return BOOLEAN]",
+            "insertText": "rising_edge"
+          },
+          {
+            "label": "sec",
+            "kind": 11,
+            "detail": "physical literal 'sec'",
+            "insertText": "sec"
+          },
+          {
+            "label": "sig_clock",
+            "kind": 23,
+            "detail": "signal 'sig_clock'",
+            "insertText": "sig_clock"
+          },
+          {
+            "label": "sig_reset",
+            "kind": 23,
+            "detail": "signal 'sig_reset'",
+            "insertText": "sig_reset"
+          },
+          {
+            "label": "std",
+            "kind": 9,
+            "detail": "library 'std'",
+            "insertText": "std"
+          },
+          {
+            "label": "us",
+            "kind": 11,
+            "detail": "physical literal 'us'",
+            "insertText": "us"
+          },
+          {
+            "label": "work",
+            "kind": 9,
+            "detail": "library 'work'",
+            "insertText": "work"
+          },
+          {
+            "label": "y",
+            "kind": 23,
+            "detail": "port 'y' : out",
+            "insertText": "y"
+          }
+        ]
+      }
+    },
+    "problems": []
+  }
+}

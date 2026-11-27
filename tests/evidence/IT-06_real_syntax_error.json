@@ -1,0 +1,37 @@
+{
+  "test_id": "IT-06_real_syntax_error",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:28",
+  "observed": {
+    "http": 200,
+    "status": "failed",
+    "stage": "language_service",
+    "error": "analysis_error",
+    "job_id": null,
+    "diagnostics": [
+      {
+        "uri": "file:///invalid_syntax.vhd",
+        "version": 1,
+        "diagnostics": [
+          {
+            "range": {
+              "start": {
+                "line": 12,
+                "character": 10
+              },
+              "end": {
+                "line": 12,
+                "character": 10
+              }
+            },
+            "severity": 1,
+            "code": "syntax_error",
+            "source": "vhdl ls",
+            "message": "Expected ';' or 'when'"
+          }
+        ],
+        "summary": "1 error found."
+      }
+    ]
+  }
+}

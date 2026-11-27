@@ -1,0 +1,43 @@
+{
+  "test_id": "IT-06_syntax_error",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:25",
+  "observed": {
+    "http": 200,
+    "result": {
+      "job_id": null,
+      "status": "failed",
+      "stage": "language_service",
+      "error": "analysis_error",
+      "message": "VHDL-LS found 1 error, so no GHDL job was started.",
+      "stages": [],
+      "vcd": null,
+      "diagnostics": [
+        {
+          "uri": "file:///and_gate.vhd",
+          "version": 1,
+          "diagnostics": [
+            {
+              "range": {
+                "start": {
+                  "line": 14,
+                  "character": 16
+                },
+                "end": {
+                  "line": 14,
+                  "character": 17
+                }
+              },
+              "severity": 1,
+              "code": "syntax",
+              "source": "vhdl_ls",
+              "message": "Expected ';' after assignment (in and_gate.vhd)"
+            }
+          ],
+          "summary": "1 error found."
+        }
+      ]
+    },
+    "p5a_called": 0
+  }
+}

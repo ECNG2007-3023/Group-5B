@@ -1,0 +1,16 @@
+{
+  "test_id": "HT-02_sessions",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "time": "2026-11-27 00:10:22",
+  "observed": {
+    "sessions": 5,
+    "summaries": [
+      "No errors present.",
+      "1 error found.",
+      "No errors present.",
+      "1 error found.",
+      "No errors present."
+    ],
+    "cleaned_up": true
+  }
+}
