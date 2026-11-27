@@ -31,9 +31,6 @@ TITLES = {
     "HT-01": "Performance", "HT-02": "Stress and scalability", "HT-03": "Recovery and fault tolerance",
     "HT-04": "Security and isolation", "HT-05": "Cross-platform behaviour",
 }
-# IT-03 and IT-04 are the same messages as UT-09..UT-13 but through the real
-# WebSocket endpoint; they are covered by those tests plus the real-vhdl_ls variants.
-ALIASES = {"IT-03": ["UT-09", "UT-11"], "IT-04": ["UT-11", "UT-13"]}
 NAME_RE = re.compile(r"test_(UT|IT|VT|HT)(\d\d)_")
 
 
@@ -79,12 +76,6 @@ def main(a, b):
             test_id = f.stem[:5]
             if test_id in evidence:
                 evidence[test_id].append(f"{label}/tests/evidence/{f.name}")
-    for test_id, sources in ALIASES.items():
-        if not results[test_id]:
-            for s in sources:
-                results[test_id] += results[s]
-                evidence[test_id] += evidence[s]
-                names[test_id].append(f"(covered by {s})")
 
     lines = [f"# STD test report - {time.strftime('%Y-%m-%d %H:%M')}", "",
              "| Test ID | Test | Result | Evidence |", "| --- | --- | --- | --- |"]
